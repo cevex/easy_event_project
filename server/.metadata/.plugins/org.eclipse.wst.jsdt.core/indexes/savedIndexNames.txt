@@ -1,0 +1,6 @@
+INDEX VERSION 1.122+/home/cedric/workspace/EasyEvent/easy_event_project/server/.metadata/.plugins/org.eclipse.wst.jsdt.core/indexes
+4242615284.index
+1780261310.index
+3613701306.index
+1531461600.index
+619167429.index

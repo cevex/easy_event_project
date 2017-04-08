@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item value="810" key="clean_up_save_particpant_modify_dialog.preferred_x"/>
+	<item value="209" key="clean_up_save_particpant_modify_dialog.preferred_y"/>
+	<item value="1035" key="clean_up_save_particpant_modify_dialog.preferred_width"/>
+	<item value="614" key="clean_up_save_particpant_modify_dialog.preferred_height"/>
+	<item value="true" key="ProjectSelectionDialog.show_all"/>
+	<item value="0" key="clean_up_save_particpant_modify_dialog.last_focus"/>
+	<item value="/usr/lib/jvm/java-8-oracle" key="org.eclipse.jdt.ui.lastextjar"/>
+	<item value="1" key="org.eclipse.jdt.uiformatter_page.modify_dialog_tab_page.last_focus_index"/>
+	<item value="/usr/lib/jvm/java-8-oracle/jre/bin/java" key="org.eclipse.jdt.ui.lastuserlibrary"/>
+	<item value="560,578" key="UserLibraryLoadSaveDialog.size"/>
+	<section name="NewPackageWizardPage">
+		<item value="false" key="create_package_info_java"/>
+	</section>
+	<section name="JavaSearchPage">
+		<item value="0" key="HISTORY_SIZE"/>
+		<item value="false" key="CASE_SENSITIVE"/>
+		<item value="11" key="INCLUDE_MASK"/>
+	</section>
+	<section name="JavaElementSearchActions">
+	</section>
+</section>
