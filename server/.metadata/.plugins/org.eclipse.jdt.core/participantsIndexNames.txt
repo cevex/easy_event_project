@@ -1,3 +1,0 @@
-INDEX VERSION 1.127
-/home/cedric/workspace/EasyEvent/easy_event_project/server/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/2552638079.index
-/easyevent/src/main/java
