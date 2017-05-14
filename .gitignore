@@ -16,3 +16,11 @@ RemoteSystemsTempFiles/
 # Maven
 log/
 target/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
