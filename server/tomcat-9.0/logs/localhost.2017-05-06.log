@@ -1,0 +1,32 @@
+06-May-2017 13:41:32.654 INFOS [main] org.apache.catalina.core.ApplicationContext.log Spring WebApplicationInitializers detected on classpath: [com.cevex.tuto.springmvc4.configuration.HelloWorldInitializer@319c3a25]
+06-May-2017 13:41:32.688 INFOS [main] org.apache.catalina.core.ApplicationContext.log Initializing Spring root WebApplicationContext
+06-May-2017 13:41:33.237 INFOS [main] org.apache.catalina.core.ApplicationContext.log Initializing Spring FrameworkServlet 'dispatcher'
+06-May-2017 13:41:33.407 INFOS [main] org.apache.catalina.core.ApplicationContext.log ContextListener: contextInitialized()
+06-May-2017 13:41:33.407 INFOS [main] org.apache.catalina.core.ApplicationContext.log SessionListener: contextInitialized()
+06-May-2017 13:54:20.192 INFOS [main] org.apache.catalina.core.ApplicationContext.log SessionListener: contextDestroyed()
+06-May-2017 13:54:20.192 INFOS [main] org.apache.catalina.core.ApplicationContext.log ContextListener: contextDestroyed()
+06-May-2017 13:54:20.196 INFOS [main] org.apache.catalina.core.ApplicationContext.log Destroying Spring FrameworkServlet 'dispatcher'
+06-May-2017 13:54:20.197 INFOS [main] org.apache.catalina.core.ApplicationContext.log Closing Spring root WebApplicationContext
+06-May-2017 13:54:34.148 INFOS [main] org.apache.catalina.core.ApplicationContext.log Spring WebApplicationInitializers detected on classpath: [com.cevex.tuto.springmvc4.configuration.HelloWorldInitializer@47af099e]
+06-May-2017 13:54:34.181 INFOS [main] org.apache.catalina.core.ApplicationContext.log Initializing Spring root WebApplicationContext
+06-May-2017 13:54:34.756 INFOS [main] org.apache.catalina.core.ApplicationContext.log Initializing Spring FrameworkServlet 'dispatcher'
+06-May-2017 13:54:34.940 INFOS [main] org.apache.catalina.core.ApplicationContext.log ContextListener: contextInitialized()
+06-May-2017 13:54:34.941 INFOS [main] org.apache.catalina.core.ApplicationContext.log SessionListener: contextInitialized()
+06-May-2017 13:55:02.549 INFOS [main] org.apache.catalina.core.ApplicationContext.log SessionListener: contextDestroyed()
+06-May-2017 13:55:02.549 INFOS [main] org.apache.catalina.core.ApplicationContext.log ContextListener: contextDestroyed()
+06-May-2017 13:55:02.553 INFOS [main] org.apache.catalina.core.ApplicationContext.log Destroying Spring FrameworkServlet 'dispatcher'
+06-May-2017 13:55:02.554 INFOS [main] org.apache.catalina.core.ApplicationContext.log Closing Spring root WebApplicationContext
+06-May-2017 13:55:05.423 INFOS [main] org.apache.catalina.core.ApplicationContext.log Spring WebApplicationInitializers detected on classpath: [com.cevex.tuto.springmvc4.configuration.HelloWorldInitializer@15dc339f]
+06-May-2017 13:55:05.453 INFOS [main] org.apache.catalina.core.ApplicationContext.log Initializing Spring root WebApplicationContext
+06-May-2017 13:55:06.067 INFOS [main] org.apache.catalina.core.ApplicationContext.log Initializing Spring FrameworkServlet 'dispatcher'
+06-May-2017 13:55:06.226 INFOS [main] org.apache.catalina.core.ApplicationContext.log ContextListener: contextInitialized()
+06-May-2017 13:55:06.226 INFOS [main] org.apache.catalina.core.ApplicationContext.log SessionListener: contextInitialized()
+06-May-2017 13:57:33.084 INFOS [main] org.apache.catalina.core.ApplicationContext.log SessionListener: contextDestroyed()
+06-May-2017 13:57:33.084 INFOS [main] org.apache.catalina.core.ApplicationContext.log ContextListener: contextDestroyed()
+06-May-2017 13:57:33.088 INFOS [main] org.apache.catalina.core.ApplicationContext.log Destroying Spring FrameworkServlet 'dispatcher'
+06-May-2017 13:57:33.089 INFOS [main] org.apache.catalina.core.ApplicationContext.log Closing Spring root WebApplicationContext
+06-May-2017 13:57:35.327 INFOS [main] org.apache.catalina.core.ApplicationContext.log Spring WebApplicationInitializers detected on classpath: [com.cevex.tuto.springmvc4.configuration.HelloWorldInitializer@15dc339f]
+06-May-2017 13:57:35.357 INFOS [main] org.apache.catalina.core.ApplicationContext.log Initializing Spring root WebApplicationContext
+06-May-2017 13:57:35.946 INFOS [main] org.apache.catalina.core.ApplicationContext.log Initializing Spring FrameworkServlet 'dispatcher'
+06-May-2017 13:57:36.090 INFOS [main] org.apache.catalina.core.ApplicationContext.log ContextListener: contextInitialized()
+06-May-2017 13:57:36.090 INFOS [main] org.apache.catalina.core.ApplicationContext.log SessionListener: contextInitialized()

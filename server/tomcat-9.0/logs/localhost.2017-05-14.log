@@ -1,0 +1,23 @@
+14-May-2017 12:13:27.275 INFOS [main] org.apache.catalina.core.ApplicationContext.log ContextListener: contextInitialized()
+14-May-2017 12:13:27.275 INFOS [main] org.apache.catalina.core.ApplicationContext.log SessionListener: contextInitialized()
+14-May-2017 12:21:35.233 INFOS [main] org.apache.catalina.core.ApplicationContext.log SessionListener: contextDestroyed()
+14-May-2017 12:21:35.233 INFOS [main] org.apache.catalina.core.ApplicationContext.log ContextListener: contextDestroyed()
+14-May-2017 12:21:54.864 INFOS [main] org.apache.catalina.core.ApplicationContext.log ContextListener: contextInitialized()
+14-May-2017 12:21:54.864 INFOS [main] org.apache.catalina.core.ApplicationContext.log SessionListener: contextInitialized()
+14-May-2017 12:23:02.454 INFOS [main] org.apache.catalina.core.ApplicationContext.log SessionListener: contextDestroyed()
+14-May-2017 12:23:02.454 INFOS [main] org.apache.catalina.core.ApplicationContext.log ContextListener: contextDestroyed()
+14-May-2017 12:23:04.951 INFOS [main] org.apache.catalina.core.ApplicationContext.log ContextListener: contextInitialized()
+14-May-2017 12:23:04.951 INFOS [main] org.apache.catalina.core.ApplicationContext.log SessionListener: contextInitialized()
+14-May-2017 12:27:15.629 INFOS [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.core.ApplicationContext.log 1 Spring WebApplicationInitializers detected on classpath
+14-May-2017 12:27:15.665 INFOS [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.core.ApplicationContext.log Initializing Spring root WebApplicationContext
+14-May-2017 12:27:16.791 INFOS [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.core.ApplicationContext.log Initializing Spring FrameworkServlet 'dispatcher'
+14-May-2017 12:33:56.868 INFOS [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.core.ApplicationContext.log Destroying Spring FrameworkServlet 'dispatcher'
+14-May-2017 12:33:56.869 INFOS [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.core.ApplicationContext.log Closing Spring root WebApplicationContext
+14-May-2017 12:33:57.387 INFOS [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.core.ApplicationContext.log 1 Spring WebApplicationInitializers detected on classpath
+14-May-2017 12:33:57.425 INFOS [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.core.ApplicationContext.log Initializing Spring root WebApplicationContext
+14-May-2017 12:33:58.428 INFOS [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.core.ApplicationContext.log Initializing Spring FrameworkServlet 'dispatcher'
+14-May-2017 12:35:38.478 INFOS [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.core.ApplicationContext.log Destroying Spring FrameworkServlet 'dispatcher'
+14-May-2017 12:35:38.479 INFOS [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.core.ApplicationContext.log Closing Spring root WebApplicationContext
+14-May-2017 12:35:38.836 INFOS [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.core.ApplicationContext.log 1 Spring WebApplicationInitializers detected on classpath
+14-May-2017 12:35:38.865 INFOS [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.core.ApplicationContext.log Initializing Spring root WebApplicationContext
+14-May-2017 12:35:39.558 INFOS [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.core.ApplicationContext.log Initializing Spring FrameworkServlet 'dispatcher'
