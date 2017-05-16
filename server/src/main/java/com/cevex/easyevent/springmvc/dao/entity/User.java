@@ -1,4 +1,4 @@
-package com.cevex.easyevent.springmvc.model;
+package com.cevex.easyevent.springmvc.dao.entity;
 
 public class User {
 

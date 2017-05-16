@@ -13,9 +13,7 @@ CREATE TABLE t_event (
     event_id bigserial CONSTRAINT t_event_pk PRIMARY KEY,
     event_title varchar(200) NOT NULL,
     event_place varchar(200),
-    event_start_date timestamp with time zone  DEFAULT now(),
+    event_start_date timestamp with time zone DEFAULT now(),
     event_end_date timestamp with time zone DEFAULT null,
     event_image bytea
 );
-
-

@@ -1,5 +1,6 @@
 package com.cevex.easyevent.springmvc.model;
 
+import java.sql.Blob;
 import java.util.Date;
 
 public class Event {
@@ -9,9 +10,12 @@ public class Event {
     private String place;
     private Date start;
     private Date end;
-    private Byte[] image;
+    private Blob image;
 
-    public Event(Long id, String title, String place, Date start, Date end, Byte[] image) {
+    public Event() {
+    }
+
+    public Event(Long id, String title, String place, Date start, Date end, Blob image) {
         this.id = id;
         this.title = title;
         this.place = place;
@@ -60,11 +64,11 @@ public class Event {
         this.end = end;
     }
 
-    public Byte[] getImage() {
+    public Blob getImage() {
         return image;
     }
 
-    public void setImage(Byte[] image) {
+    public void setImage(Blob image) {
         this.image = image;
     }
 }

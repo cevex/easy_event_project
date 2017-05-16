@@ -6,7 +6,10 @@ public class EasyEventInitializer extends AbstractAnnotationConfigDispatcherServ
 
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class[]{EasyEventConfiguration.class};
+        return new Class[]{
+                EasyEventConfiguration.class,
+                HibernateConfiguration.class
+        };
     }
 
     @Override
