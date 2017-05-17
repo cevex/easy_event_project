@@ -10,7 +10,7 @@ public class WelcomeController {
 
     @RequestMapping("/")
     public String welcome() {//Welcome page, non-rest
-        return "Welcome to the Easy EventEntity Project.";
+        return "Welcome to the Easy Event Project.";
     }
 
     @RequestMapping("/welcome/{buddy}")

@@ -15,18 +15,22 @@ import java.util.List;
 @Transactional
 public class EventService {
 
+    private EventDao eventDao;
+
     @Autowired
-    private EventDao dao;
+    public EventService(EventDao eventDao) {
+        this.eventDao = eventDao;
+    }
 
     private boolean isEventExist(Long id) {
-        return id != null && dao.findEvent(id) != null;
+        return id != null && eventDao.findEvent(id) != null;
     }
 
     public EventEntity getEvent(long id) {
-        EventEntity event = dao.findEvent(id);
+        EventEntity event = eventDao.findEvent(id);
 
         if (event == null) {
-            throw new NotFoundException("EventEntity: id=" + id + "=> already exist");
+            throw new NotFoundException("Event: id=" + id + "=> already exist");
         }
 
         return event;
@@ -34,9 +38,9 @@ public class EventService {
 
     public void createEvent(EventEntity event) {
         if (isEventExist(event.getId())) {
-            dao.saveEvent(event);
+            eventDao.saveEvent(event);
         } else {
-            throw new AlreadyExistsException("EventEntity: id=" + event.getId() + "=> already exist");
+            throw new AlreadyExistsException("Event: id=" + event.getId() + "=> already exist");
         }
     }
 
@@ -50,11 +54,11 @@ public class EventService {
 
     public void deleteEvent(long id) {
         if (isEventExist(id)) {
-            dao.deleteEvent(id);
+            eventDao.deleteEvent(id);
         }
     }
 
     public List<EventEntity> getAllEvents() {
-        return dao.findAllEvents();
+        return eventDao.findAllEvents();
     }
 }

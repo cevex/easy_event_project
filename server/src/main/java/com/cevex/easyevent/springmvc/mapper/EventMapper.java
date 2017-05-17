@@ -3,11 +3,21 @@ package com.cevex.easyevent.springmvc.mapper;
 import com.cevex.easyevent.springmvc.dao.entity.EventEntity;
 import com.cevex.easyevent.springmvc.model.Event;
 import org.joda.time.LocalDate;
+import org.springframework.stereotype.Service;
 
-/**
- * Created by cedric on 16/05/17.
- */
+import java.util.ArrayList;
+import java.util.List;
+
+@Service
 public class EventMapper {
+
+    public List<Event> mapEventList(List<EventEntity> entityList) {
+        List<Event> eventList = new ArrayList<>();
+        for (EventEntity entity : entityList) {
+            eventList.add(mapEvent(entity));
+        }
+        return eventList;
+    }
 
     public Event mapEvent(EventEntity entity) {
         Event event = new Event();
