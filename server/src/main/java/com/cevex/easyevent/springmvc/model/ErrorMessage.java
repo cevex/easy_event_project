@@ -1,11 +1,11 @@
 package com.cevex.easyevent.springmvc.model;
 
-public class Message {
+public class ErrorMessage {
 
     private String name;
     private String text;
 
-    public Message(String name, String text) {
+    public ErrorMessage(String name, String text) {
         this.name = name;
         this.text = text;
     }

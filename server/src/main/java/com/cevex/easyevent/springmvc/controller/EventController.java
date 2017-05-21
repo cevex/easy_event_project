@@ -24,7 +24,9 @@ public class EventController {
     @Autowired
     private EventMapper eventMapper;
 
-    //-------------------Retrieve All Event--------------------------------------------------------
+    //=============================================================================================
+    //                          Retrieve All Event
+    //=============================================================================================
 
     @RequestMapping(value = "/events", method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -36,7 +38,9 @@ public class EventController {
         return new ResponseEntity<>(eventMapper.mapEventList(events), HttpStatus.OK);
     }
 
-    //------------------- Retrieve Single Event --------------------------------------------------------
+    //=============================================================================================
+    //                          Retrieve Single Event
+    //=============================================================================================
 
     @RequestMapping(value = "/events/{event_id}", method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -45,7 +49,10 @@ public class EventController {
         EventEntity event = eventService.getEvent(id);
         return new ResponseEntity<>(eventMapper.mapEvent(event), HttpStatus.OK);
     }
-    //------------------- Create an Event --------------------------------------------------------
+
+    //=============================================================================================
+    //                          Create Single Event
+    //=============================================================================================
 
     @RequestMapping(value = "/events", method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
@@ -61,9 +68,9 @@ public class EventController {
         return new ResponseEntity<>(headers, HttpStatus.CREATED);
     }
 
-
-
-    //------------------- Update an Event --------------------------------------------------------
+    //=============================================================================================
+    //                          Update Single Event
+    //=============================================================================================
 
     @RequestMapping(value = "/events/{event_id}", method = RequestMethod.PUT,
             consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
@@ -74,7 +81,9 @@ public class EventController {
         return new ResponseEntity<>(event, HttpStatus.OK);
     }
 
-    //------------------- Delete a Event --------------------------------------------------------
+    //=============================================================================================
+    //                          Delete an Event
+    //=============================================================================================
 
     @RequestMapping(value = "/events/{event_id}", method = RequestMethod.DELETE,
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
