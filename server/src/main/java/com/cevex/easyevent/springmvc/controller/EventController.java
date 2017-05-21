@@ -1,6 +1,7 @@
 package com.cevex.easyevent.springmvc.controller;
 
 import com.cevex.easyevent.springmvc.dao.entity.EventEntity;
+import com.cevex.easyevent.springmvc.error.exception.WrongParameterException;
 import com.cevex.easyevent.springmvc.mapper.EventMapper;
 import com.cevex.easyevent.springmvc.model.Event;
 import com.cevex.easyevent.springmvc.service.EventService;
@@ -9,9 +10,11 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -57,13 +60,17 @@ public class EventController {
     @RequestMapping(value = "/events", method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<Void> createEvent(@RequestBody Event event, UriComponentsBuilder ucBuilder) {
+    public ResponseEntity<Void> createEvent(@RequestBody @Valid Event event, BindingResult bindingResult, UriComponentsBuilder ucBuilder) {
         System.out.println("Creating Event " + event.getTitle());
+
+        if (bindingResult.hasErrors()){
+            throw new WrongParameterException(bindingResult);
+        }
 
         eventService.createEvent(eventMapper.mapEvent(event));
 
         HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(ucBuilder.path("/event/{event_id}").buildAndExpand(event.getId()).toUri());
+        headers.setLocation(ucBuilder.path("/events/{id}").buildAndExpand(event.getId()).toUri());
 
         return new ResponseEntity<>(headers, HttpStatus.CREATED);
     }

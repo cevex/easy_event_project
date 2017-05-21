@@ -5,8 +5,6 @@ import org.joda.time.LocalDate;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.sql.Blob;
 
 @Entity
@@ -18,21 +16,17 @@ public class EventEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Size(min = 3, max = 50)
     @Column(name = "event_title", nullable = false)
     private String title;
 
-    @Size(min = 3, max = 50)
     @Column(name = "event_place")
     private String place;
 
-    @NotNull
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ssXXX")
     @Column(name = "event_start_date", nullable = false)
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
     private LocalDate start;
 
-    @NotNull
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ssXXX")
     @Column(name = "event_end_date", nullable = false)
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")

@@ -6,8 +6,10 @@ import com.cevex.easyevent.springmvc.error.exception.AlreadyExistsException;
 import com.cevex.easyevent.springmvc.error.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.BindingResult;
 
 import javax.transaction.Transactional;
+import javax.validation.Valid;
 import java.util.List;
 
 
@@ -38,10 +40,9 @@ public class EventService {
 
     public void createEvent(EventEntity event) {
         if (isEventExist(event.getId())) {
-            eventDao.saveEvent(event);
-        } else {
             throw new AlreadyExistsException("Event: id=" + event.getId() + "=> already exist");
         }
+
     }
 
     public void updateEvent(EventEntity event) {

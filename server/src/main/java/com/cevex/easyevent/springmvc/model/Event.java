@@ -1,22 +1,36 @@
 package com.cevex.easyevent.springmvc.model;
 
+import com.cevex.easyevent.springmvc.error.validation.DateFormatConstraint;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.sql.Blob;
 import java.util.Date;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Event {
 
     private Long id;
 
+    @NotNull
+    @Size(min = 3, max = 50)
     private String title;
 
+    @Size(min = 3, max = 50)
     private String place;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'")
+    @NotNull
+    @DateFormatConstraint
+    //@DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm:ss'Z'")
+//    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'")
     private Date start;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'")
+    @NotNull
+    @DateFormatConstraint
+    //@DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm:ss'Z'")
+//    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'")
     private Date end;
 
     private Blob image;
