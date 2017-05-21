@@ -24,13 +24,13 @@ public class Event {
     @NotNull
     @DateFormatConstraint
     //@DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm:ss'Z'")
-//    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'")
     private Date start;
 
     @NotNull
     @DateFormatConstraint
     //@DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm:ss'Z'")
-//    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'")
     private Date end;
 
     private Blob image;
