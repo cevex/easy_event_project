@@ -1,15 +1,24 @@
 package com.cevex.easyevent.springmvc.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.sql.Blob;
 import java.util.Date;
 
 public class Event {
 
     private Long id;
+
     private String title;
+
     private String place;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'")
     private Date start;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'")
     private Date end;
+
     private Blob image;
 
     public Event() {

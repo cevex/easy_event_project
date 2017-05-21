@@ -27,7 +27,6 @@ public class EventController {
     //-------------------Retrieve All Event--------------------------------------------------------
 
     @RequestMapping(value = "/events", method = RequestMethod.GET,
-            consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<List<Event>> getAllEvents() {
         List<EventEntity> events = eventService.getAllEvents();
@@ -37,6 +36,15 @@ public class EventController {
         return new ResponseEntity<>(eventMapper.mapEventList(events), HttpStatus.OK);
     }
 
+    //------------------- Retrieve Single Event --------------------------------------------------------
+
+    @RequestMapping(value = "/events/{event_id}", method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<Event> getEvent(@PathVariable("event_id") long id) {
+        System.out.println("Fetching Event with id " + id);
+        EventEntity event = eventService.getEvent(id);
+        return new ResponseEntity<>(eventMapper.mapEvent(event), HttpStatus.OK);
+    }
     //------------------- Create an Event --------------------------------------------------------
 
     @RequestMapping(value = "/events", method = RequestMethod.POST,
@@ -53,16 +61,7 @@ public class EventController {
         return new ResponseEntity<>(headers, HttpStatus.CREATED);
     }
 
-    //------------------- Retrieve Single Event --------------------------------------------------------
 
-    @RequestMapping(value = "/events/{event_id}", method = RequestMethod.GET,
-            consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
-            produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<Event> getEvent(@PathVariable("event_id") long id) {
-        System.out.println("Fetching Event with id " + id);
-        EventEntity event = eventService.getEvent(id);
-        return new ResponseEntity<>(eventMapper.mapEvent(event), HttpStatus.OK);
-    }
 
     //------------------- Update an Event --------------------------------------------------------
 
@@ -78,7 +77,6 @@ public class EventController {
     //------------------- Delete a Event --------------------------------------------------------
 
     @RequestMapping(value = "/events/{event_id}", method = RequestMethod.DELETE,
-            consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<Void> deleteEvent(@PathVariable("event_id") long id) {
         System.out.println("Fetching & Deleting Event with id " + id);

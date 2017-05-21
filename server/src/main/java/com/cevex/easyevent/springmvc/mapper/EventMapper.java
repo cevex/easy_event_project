@@ -23,6 +23,7 @@ public class EventMapper {
         Event event = new Event();
 
         event.setId(entity.getId());
+        event.setTitle(entity.getTitle());
         event.setPlace(entity.getPlace());
         event.setStart(entity.getStart().toDate());
         event.setEnd(entity.getEnd().toDate());
@@ -35,6 +36,7 @@ public class EventMapper {
         EventEntity entity = new EventEntity();
 
         entity.setId(event.getId());
+        entity.setTitle(event.getTitle());
         entity.setPlace(event.getPlace());
         entity.setStart(new LocalDate(event.getStart()));
         entity.setEnd(new LocalDate(event.getEnd()));
