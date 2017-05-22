@@ -1,5 +1,6 @@
 package com.cevex.easyevent.springmvc.dao;
 
+import com.cevex.easyevent.springmvc.common.AbstractDao;
 import com.cevex.easyevent.springmvc.dao.entity.EventEntity;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
@@ -19,8 +20,8 @@ public class EventDao extends AbstractDao<Long, EventEntity> {
     }
 
     public void deleteEvent(long id) {
-        Query query = getSession().createSQLQuery("delete from Event where id = :id");
-        query.setString("id", Long.toString(id));
+        String QUERY = "delete from t_event where event_id = " + Long.toString(id);
+        Query query = getSession().createSQLQuery(QUERY);
         query.executeUpdate();
     }
 

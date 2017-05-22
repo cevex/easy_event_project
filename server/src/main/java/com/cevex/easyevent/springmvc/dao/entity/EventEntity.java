@@ -1,11 +1,10 @@
 package com.cevex.easyevent.springmvc.dao.entity;
 
 import org.hibernate.annotations.Type;
-import org.joda.time.LocalDate;
+import org.joda.time.LocalDateTime;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.sql.Blob;
 
 @Entity
 @Table(name = "t_event")
@@ -24,18 +23,16 @@ public class EventEntity {
 
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ssXXX")
     @Column(name = "event_start_date", nullable = false)
-    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
-    private LocalDate start;
+    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDateTime")
+    private LocalDateTime start;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ssXXX")
     @Column(name = "event_end_date", nullable = false)
-    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
-    private LocalDate end;
+    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDateTime")
+    private LocalDateTime end;
 
-    @Lob
-    @Type(type = "org.hibernate.type.BlobType")
     @Column(name = "event_image")
-    private Blob image;
+    private Byte[] image;
 
     public Long getId() {
         return id;
@@ -61,27 +58,27 @@ public class EventEntity {
         this.place = place;
     }
 
-    public LocalDate getStart() {
+    public LocalDateTime getStart() {
         return start;
     }
 
-    public void setStart(LocalDate start) {
+    public void setStart(LocalDateTime start) {
         this.start = start;
     }
 
-    public LocalDate getEnd() {
+    public LocalDateTime getEnd() {
         return end;
     }
 
-    public void setEnd(LocalDate end) {
+    public void setEnd(LocalDateTime end) {
         this.end = end;
     }
 
-    public Blob getImage() {
+    public Byte[] getImage() {
         return image;
     }
 
-    public void setImage(Blob image) {
+    public void setImage(Byte[] image) {
         this.image = image;
     }
 }

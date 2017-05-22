@@ -1,13 +1,12 @@
 package com.cevex.easyevent.springmvc.model;
 
-import com.cevex.easyevent.springmvc.error.validation.DateFormatConstraint;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.joda.time.DateTime;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.sql.Blob;
-import java.util.Date;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Event {
@@ -22,23 +21,23 @@ public class Event {
     private String place;
 
     @NotNull
-    @DateFormatConstraint
-    //@DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm:ss'Z'")
+//    @DateFormatConstraint
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'hh:mm:ss")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'")
-    private Date start;
+    private DateTime start;
 
     @NotNull
-    @DateFormatConstraint
-    //@DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm:ss'Z'")
+//    @DateFormatConstraint
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'hh:mm:ss")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'")
-    private Date end;
+    private DateTime end;
 
-    private Blob image;
+    private Byte[] image;
 
     public Event() {
     }
 
-    public Event(Long id, String title, String place, Date start, Date end, Blob image) {
+    public Event(Long id, String title, String place, DateTime start, DateTime end, Byte[] image) {
         this.id = id;
         this.title = title;
         this.place = place;
@@ -71,27 +70,27 @@ public class Event {
         this.place = place;
     }
 
-    public Date getStart() {
+    public DateTime getStart() {
         return start;
     }
 
-    public void setStart(Date start) {
+    public void setStart(DateTime start) {
         this.start = start;
     }
 
-    public Date getEnd() {
+    public DateTime getEnd() {
         return end;
     }
 
-    public void setEnd(Date end) {
+    public void setEnd(DateTime end) {
         this.end = end;
     }
 
-    public Blob getImage() {
+    public Byte[] getImage() {
         return image;
     }
 
-    public void setImage(Blob image) {
+    public void setImage(Byte[] image) {
         this.image = image;
     }
 }

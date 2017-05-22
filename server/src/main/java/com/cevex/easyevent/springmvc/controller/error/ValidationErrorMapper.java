@@ -1,4 +1,4 @@
-package com.cevex.easyevent.springmvc.error.mapper;
+package com.cevex.easyevent.springmvc.controller.error;
 
 import com.cevex.easyevent.springmvc.error.model.ValidationErrorCause;
 import org.springframework.stereotype.Service;
@@ -10,7 +10,6 @@ import java.util.List;
 
 @Service
 public class ValidationErrorMapper {
-
 
     public List<ValidationErrorCause> mapValidationErrorList(BindingResult bindingResult) {
         List<ValidationErrorCause> errorCauseList = new ArrayList<>();

@@ -3,6 +3,7 @@ package com.cevex.easyevent.springmvc.mapper;
 import com.cevex.easyevent.springmvc.dao.entity.EventEntity;
 import com.cevex.easyevent.springmvc.model.Event;
 import org.joda.time.LocalDate;
+import org.joda.time.LocalDateTime;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -25,8 +26,8 @@ public class EventMapper {
         event.setId(entity.getId());
         event.setTitle(entity.getTitle());
         event.setPlace(entity.getPlace());
-        event.setStart(entity.getStart().toDate());
-        event.setEnd(entity.getEnd().toDate());
+        event.setStart(entity.getStart().toDateTime());
+        event.setEnd(entity.getEnd().toDateTime());
         event.setImage(entity.getImage());
 
         return event;
@@ -36,12 +37,16 @@ public class EventMapper {
         EventEntity entity = new EventEntity();
 
         entity.setId(event.getId());
-        entity.setTitle(event.getTitle());
-        entity.setPlace(event.getPlace());
-        entity.setStart(new LocalDate(event.getStart()));
-        entity.setEnd(new LocalDate(event.getEnd()));
-        entity.setImage(event.getImage());
+        updateEventEntity(entity, event);
 
         return entity;
+    }
+
+    public void updateEventEntity(EventEntity entity, Event event) {
+        entity.setTitle(event.getTitle());
+        entity.setPlace(event.getPlace());
+        entity.setStart(new LocalDateTime(event.getStart()));
+        entity.setEnd(new LocalDateTime(event.getEnd()));
+        entity.setImage(event.getImage());
     }
 }

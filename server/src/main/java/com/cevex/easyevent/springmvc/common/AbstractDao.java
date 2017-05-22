@@ -1,4 +1,4 @@
-package com.cevex.easyevent.springmvc.dao;
+package com.cevex.easyevent.springmvc.common;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
