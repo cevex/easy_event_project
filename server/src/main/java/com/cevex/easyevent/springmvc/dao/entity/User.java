@@ -9,6 +9,9 @@ public class User {
     private Double money;
     private Byte[] image;
 
+    public User() {
+    }
+
     public User(Long id, String name, String phone, String email, Double money, Byte[] image) {
         this.id = id;
         this.name = name;

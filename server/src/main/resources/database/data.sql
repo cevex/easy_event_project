@@ -1,7 +1,7 @@
-INSERT INTO t_user (user_name, user_phone, user_mail, user_wallet)
-    VALUES  ('Boby', '0645896285', 'boby@test.com', '200,00€'),
-            ('Joe', '0646846298', 'boby@test.com', '-900,00 €'),
-            ('Mel', '0645896269', 'boby@test.com', '5,00 €');
+INSERT INTO t_user (user_name, user_password, user_phone, user_email, user_wallet)
+    VALUES  ('Boby', '123', '0645896285', 'boby@test.com', '200,00€'),
+            ('Joe', 'MonMotDePasse','0646846298', 'boby@test.com', '-900,00 €'),
+            ('Mel', '123','0645896269', 'boby@test.com', '5,00 €');
 
 INSERT INTO t_event (event_title, event_place, event_start_date, event_end_date)
     VALUES  ('RoadTrip', 'Here', '2017-01-01 10:23:54+01', '2017-01-10 10:23:54+01'),

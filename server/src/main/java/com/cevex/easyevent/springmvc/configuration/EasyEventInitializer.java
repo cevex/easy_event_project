@@ -1,6 +1,9 @@
 package com.cevex.easyevent.springmvc.configuration;
 
+import com.cevex.easyevent.springmvc.configuration.security.CORSFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+
+import javax.servlet.Filter;
 
 public class EasyEventInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
@@ -8,7 +11,7 @@ public class EasyEventInitializer extends AbstractAnnotationConfigDispatcherServ
     protected Class<?>[] getRootConfigClasses() {
         return new Class[]{
                 EasyEventConfiguration.class,
-                HibernateConfiguration.class
+                HibernateConfiguration.class,
         };
     }
 
@@ -22,4 +25,9 @@ public class EasyEventInitializer extends AbstractAnnotationConfigDispatcherServ
         return new String[]{"/"};
     }
 
+    @Override
+    protected Filter[] getServletFilters() {
+        Filter [] singleton = { new CORSFilter()};
+        return singleton;
+    }
 }
