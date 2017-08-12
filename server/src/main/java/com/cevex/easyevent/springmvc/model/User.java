@@ -1,13 +1,31 @@
-package com.cevex.easyevent.springmvc.dao.entity;
+package com.cevex.easyevent.springmvc.model;
+
+import javax.validation.constraints.Size;
 
 public class User {
 
+    //=========================================================================
+    //          Attributes
+    //=========================================================================
+
     private Long id;
+
+    @Size(min = 3, max = 50)
     private String name;
+
+    @Size(min = 3, max = 50)
     private String phone;
+
+    @Size(min = 3, max = 50)
     private String email;
+
     private Double money;
+
     private Byte[] image;
+
+    //=========================================================================
+    //          Constructor
+    //=========================================================================
 
     public User() {
     }

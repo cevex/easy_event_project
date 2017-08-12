@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Event {
+public class Contribution {
 
     //=========================================================================
     //          Attributes
@@ -42,10 +42,10 @@ public class Event {
     //          Constructor
     //=========================================================================
 
-    public Event() {
+    public Contribution() {
     }
 
-    public Event(Long id, String title, String place, DateTime start, DateTime end, Byte[] image) {
+    public Contribution(Long id, String title, String place, DateTime start, DateTime end, Byte[] image) {
         this.id = id;
         this.title = title;
         this.place = place;

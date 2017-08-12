@@ -1,12 +1,17 @@
 CREATE EXTENSION IF NOT EXISTS pgcrypto;
 
+DROP TABLE IF EXISTS t_contribution cascade;
+DROP TABLE IF EXISTS t_expense cascade;
+DROP TABLE IF EXISTS t_participant cascade;
+DROP TABLE IF EXISTS t_event cascade;
+DROP TABLE IF EXISTS t_user cascade;
+
 /*######################################################################################*/
 /*                                    USER                                              */
 /*######################################################################################*/
 
-DROP TABLE IF EXISTS t_user;
 CREATE TABLE t_user (
-    user_id bigserial CONSTRAINT t_user_pk PRIMARY KEY,
+    userName bigserial CONSTRAINT t_user_pk PRIMARY KEY,
     user_email varchar(260),
     user_password varchar(60),
     user_name varchar(50),
@@ -16,7 +21,7 @@ CREATE TABLE t_user (
 );
 
 /*========================================*/
-/*              Encode Password           */
+/*       Encode Password                  */
 /*========================================*/
 
 CREATE OR REPLACE FUNCTION encode_password_user_before_insert()
@@ -35,8 +40,6 @@ CREATE TRIGGER user_before_insert_trigger
 /*                     Event                                                            */
 /*######################################################################################*/
 
-
-DROP TABLE IF EXISTS t_event;
 CREATE TABLE t_event (
     event_id bigserial CONSTRAINT t_event_pk PRIMARY KEY,
     event_title varchar(200) NOT NULL,
@@ -44,4 +47,38 @@ CREATE TABLE t_event (
     event_start_date timestamp with time zone DEFAULT now(),
     event_end_date timestamp with time zone DEFAULT null,
     event_image bytea
+);
+
+/*######################################################################################*/
+/*                     Participant                                                      */
+/*######################################################################################*/
+
+CREATE TABLE t_participant (
+    participant_id bigserial CONSTRAINT t_participant_pk PRIMARY KEY,
+    participant_event_id bigserial references t_event(eventId) NOT NULL,
+    participant_user_name varchar(50)
+);
+
+/*participant_user_id bigserial references t_user(userName)*/
+
+/*######################################################################################*/
+/*                     Expense                                                          */
+/*######################################################################################*/
+
+CREATE TABLE t_expense (
+    expense_id bigserial CONSTRAINT t_expense_pk PRIMARY KEY,
+    expense_event_id bigserial references t_event(eventId) NOT NULL,
+    expense_label varchar(200),
+    expense_date timestamp with time zone DEFAULT now()
+);
+
+/*######################################################################################*/
+/*                     Contribution                                                     */
+/*######################################################################################*/
+
+CREATE TABLE t_contribution (
+    contribution_id bigserial CONSTRAINT t_contribution_pk PRIMARY KEY,
+    contribution_expense_id bigserial references t_expense(expense_id) NOT NULL,
+    contribution_participant_id bigserial references t_participant(participant_id) NOT NULL,
+    contribution_amount money DEFAULT 0
 );

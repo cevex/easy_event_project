@@ -30,12 +30,17 @@ public class EventService {
         return id != null && eventDao.findEvent(id) != null;
     }
 
+    public List<Event> getAllEvents() {
+        List<EventEntity> events = eventDao.findAllEvents();
+        return eventMapper.mapEventList(events);
+    }
+
     public Event getEvent(long id) {
         EventEntity eventEntity = findEvent(id);
         return eventMapper.mapEvent(eventEntity);
     }
 
-    public EventEntity findEvent(long id) {
+    private EventEntity findEvent(long id) {
         EventEntity eventEntity = eventDao.findEvent(id);
 
         if (eventEntity == null) {
@@ -65,8 +70,4 @@ public class EventService {
         }
     }
 
-    public List<Event> getAllEvents() {
-        List<EventEntity> events = eventDao.findAllEvents();
-        return eventMapper.mapEventList(events);
-    }
 }

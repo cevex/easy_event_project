@@ -1,7 +1,7 @@
 package com.cevex.easyevent.springmvc.controller;
 
 import com.cevex.easyevent.springmvc.common.RestControllerValidator;
-import com.cevex.easyevent.springmvc.dao.entity.User;
+import com.cevex.easyevent.springmvc.model.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

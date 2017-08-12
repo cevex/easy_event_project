@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Event {
+public class Expense {
 
     //=========================================================================
     //          Attributes
@@ -18,46 +18,34 @@ public class Event {
     private Long id;
 
     @NotNull
-    @Size(min = 3, max = 50)
-    private String title;
+    private Long eventId;
 
     @Size(min = 3, max = 50)
-    private String place;
+    private String label;
 
     @NotNull
-//    @DateFormatConstraint
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'hh:mm:ss")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'")
-    private DateTime start;
-
-    @NotNull
-//    @DateFormatConstraint
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'hh:mm:ss")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'")
-    private DateTime end;
-
-    private Byte[] image;
+    private DateTime date;
 
     //=========================================================================
     //          Constructor
     //=========================================================================
 
-    public Event() {
+    public Expense() {
     }
 
-    public Event(Long id, String title, String place, DateTime start, DateTime end, Byte[] image) {
+    public Expense(Long id, Long eventId, String label, DateTime date) {
         this.id = id;
-        this.title = title;
-        this.place = place;
-        this.start = start;
-        this.end = end;
-        this.image = image;
+        this.eventId = eventId;
+        this.label = label;
+        this.date = date;
     }
 
     //=========================================================================
     //          Getter/Setter
     //=========================================================================
-
+    
     public Long getId() {
         return id;
     }
@@ -66,43 +54,27 @@ public class Event {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public Long getEventId() {
+        return eventId;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setEventId(Long eventId) {
+        this.eventId = eventId;
     }
 
-    public String getPlace() {
-        return place;
+    public String getLabel() {
+        return label;
     }
 
-    public void setPlace(String place) {
-        this.place = place;
+    public void setLabel(String label) {
+        this.label = label;
     }
 
-    public DateTime getStart() {
-        return start;
+    public DateTime getDate() {
+        return date;
     }
 
-    public void setStart(DateTime start) {
-        this.start = start;
-    }
-
-    public DateTime getEnd() {
-        return end;
-    }
-
-    public void setEnd(DateTime end) {
-        this.end = end;
-    }
-
-    public Byte[] getImage() {
-        return image;
-    }
-
-    public void setImage(Byte[] image) {
-        this.image = image;
+    public void setDate(DateTime date) {
+        this.date = date;
     }
 }
