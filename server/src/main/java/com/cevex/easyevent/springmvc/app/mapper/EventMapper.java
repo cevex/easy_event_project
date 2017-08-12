@@ -2,28 +2,19 @@ package com.cevex.easyevent.springmvc.app.mapper;
 
 import com.cevex.easyevent.springmvc.app.dao.entity.EventEntity;
 import com.cevex.easyevent.springmvc.app.model.Event;
+import com.cevex.easyevent.springmvc.share.framework.AbstractMapper;
 import org.joda.time.LocalDateTime;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Service
-public class EventMapper {
+public class EventMapper extends AbstractMapper<Event, EventEntity> {
 
     //=========================================================================
     //          DAO -> Model
     //=========================================================================
 
-    public List<Event> mapEventList(List<EventEntity> entityList) {
-        List<Event> eventList = new ArrayList<>();
-        for (EventEntity entity : entityList) {
-            eventList.add(mapEvent(entity));
-        }
-        return eventList;
-    }
-
-    public Event mapEvent(EventEntity entity) {
+    @Override
+    public Event mapToModel(EventEntity entity) {
         Event event = new Event();
 
         event.setId(entity.getId());
@@ -40,20 +31,12 @@ public class EventMapper {
     //          Model -> DAO
     //=========================================================================
 
-    public EventEntity mapEvent(Event event) {
-        EventEntity entity = new EventEntity();
-
-        entity.setId(event.getId());
-        updateEventEntity(entity, event);
-
-        return entity;
-    }
-
-    public void updateEventEntity(EventEntity entity, Event event) {
-        entity.setTitle(event.getTitle());
-        entity.setPlace(event.getPlace());
-        entity.setStart(new LocalDateTime(event.getStart()));
-        entity.setEnd(new LocalDateTime(event.getEnd()));
-        entity.setImage(event.getImage());
+    @Override
+    public void updateEntity(EventEntity entity, Event model) {
+        entity.setTitle(model.getTitle());
+        entity.setPlace(model.getPlace());
+        entity.setStart(new LocalDateTime(model.getStart()));
+        entity.setEnd(new LocalDateTime(model.getEnd()));
+        entity.setImage(model.getImage());
     }
 }

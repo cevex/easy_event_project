@@ -1,4 +1,4 @@
-package com.cevex.easyevent.springmvc.share.rest.error.exception;
+package com.cevex.easyevent.springmvc.share.framework.error.exception;
 
 /**
  * Created by cedric on 16/05/17.

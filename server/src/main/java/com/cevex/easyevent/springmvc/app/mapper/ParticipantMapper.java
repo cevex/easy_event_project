@@ -2,27 +2,18 @@ package com.cevex.easyevent.springmvc.app.mapper;
 
 import com.cevex.easyevent.springmvc.app.dao.entity.ParticipantEntity;
 import com.cevex.easyevent.springmvc.app.model.Participant;
+import com.cevex.easyevent.springmvc.share.framework.AbstractMapper;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Service
-public class ParticipantMapper {
+public class ParticipantMapper extends AbstractMapper<Participant, ParticipantEntity> {
 
     //=========================================================================
     //          DAO -> Model
     //=========================================================================
 
-    public List<Participant> mapParticipantList(List<ParticipantEntity> entityList) {
-        List<Participant> participantList = new ArrayList<>();
-        for (ParticipantEntity entity : entityList) {
-            participantList.add(mapParticipant(entity));
-        }
-        return participantList;
-    }
-
-    public Participant mapParticipant(ParticipantEntity entity) {
+    @Override
+    public Participant mapToModel(ParticipantEntity entity) {
         Participant participant = new Participant();
 
         participant.setId(entity.getId());
@@ -36,17 +27,10 @@ public class ParticipantMapper {
     //          Model -> DAO
     //=========================================================================
 
-    public ParticipantEntity mapParticipant(Participant participant) {
-        ParticipantEntity entity = new ParticipantEntity();
+    @Override
+    public void updateEntity(ParticipantEntity entity, Participant model) {
+        entity.setEventId(model.getEventId());
+        entity.setUsername(model.getUsername());
 
-        entity.setId(participant.getId());
-        updateParticipantEntity(entity, participant);
-
-        return entity;
-    }
-
-    public void updateParticipantEntity(ParticipantEntity entity, Participant participant) {
-        entity.setEventId(participant.getEventId());
-        entity.setUsername(participant.getUsername());
     }
 }

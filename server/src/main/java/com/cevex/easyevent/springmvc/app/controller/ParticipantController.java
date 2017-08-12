@@ -2,7 +2,7 @@ package com.cevex.easyevent.springmvc.app.controller;
 
 import com.cevex.easyevent.springmvc.app.model.Participant;
 import com.cevex.easyevent.springmvc.app.service.ParticipantService;
-import com.cevex.easyevent.springmvc.share.rest.RestControllerValidator;
+import com.cevex.easyevent.springmvc.share.framework.RestControllerValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -34,7 +34,7 @@ public class ParticipantController extends RestControllerValidator {
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE
     )
     public ResponseEntity<List<Participant>> getAllParticipants() {
-        List<Participant> participants = participantService.getAllParticipants();
+        List<Participant> participants = participantService.getAll();
         if (participants.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
@@ -51,7 +51,7 @@ public class ParticipantController extends RestControllerValidator {
     )
     public ResponseEntity<Participant> getParticipant(@PathVariable("participant_id") long id) {
         System.out.println("Fetching Participant with id " + id);
-        Participant participant = participantService.getParticipant(id);
+        Participant participant = participantService.get(id);
         return new ResponseEntity<>(participant, HttpStatus.OK);
     }
 
@@ -89,7 +89,7 @@ public class ParticipantController extends RestControllerValidator {
     public ResponseEntity<Participant> updateParticipant(@PathVariable("participant_id") long id, @RequestBody @Valid Participant participant, BindingResult bindingResult) {
         System.out.println("Updating Participant " + id);
         validateResource(bindingResult);
-        Participant updatedParticipant = participantService.updateParticipant(id, participant);
+        Participant updatedParticipant = participantService.update(id, participant);
         return new ResponseEntity<>(updatedParticipant, HttpStatus.OK);
     }
 
@@ -103,7 +103,7 @@ public class ParticipantController extends RestControllerValidator {
     )
     public ResponseEntity<Void> deleteParticipant(@PathVariable("participant_id") long id) {
         System.out.println("Fetching & Deleting Participant with id " + id);
-        participantService.deleteParticipant(id);
+        participantService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

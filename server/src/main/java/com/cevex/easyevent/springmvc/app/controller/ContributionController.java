@@ -2,7 +2,7 @@ package com.cevex.easyevent.springmvc.app.controller;
 
 import com.cevex.easyevent.springmvc.app.model.Contribution;
 import com.cevex.easyevent.springmvc.app.service.ContributionService;
-import com.cevex.easyevent.springmvc.share.rest.RestControllerValidator;
+import com.cevex.easyevent.springmvc.share.framework.RestControllerValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -34,7 +34,7 @@ public class ContributionController extends RestControllerValidator {
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE
     )
     public ResponseEntity<List<Contribution>> getAllContributions() {
-        List<Contribution> contributions = contributionService.getAllContributions();
+        List<Contribution> contributions = contributionService.getAll();
         if (contributions.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
@@ -51,7 +51,7 @@ public class ContributionController extends RestControllerValidator {
     )
     public ResponseEntity<Contribution> getContribution(@PathVariable("contribution_id") long id) {
         System.out.println("Fetching Contribution with id " + id);
-        Contribution contribution = contributionService.getContribution(id);
+        Contribution contribution = contributionService.get(id);
         return new ResponseEntity<>(contribution, HttpStatus.OK);
     }
 
@@ -89,7 +89,7 @@ public class ContributionController extends RestControllerValidator {
     public ResponseEntity<Contribution> updateContribution(@PathVariable("contribution_id") long id, @RequestBody @Valid Contribution contribution, BindingResult bindingResult) {
         System.out.println("Updating Contribution " + id);
         validateResource(bindingResult);
-        Contribution updatedContribution = contributionService.updateContribution(id, contribution);
+        Contribution updatedContribution = contributionService.update(id, contribution);
         return new ResponseEntity<>(updatedContribution, HttpStatus.OK);
     }
 
@@ -103,7 +103,7 @@ public class ContributionController extends RestControllerValidator {
     )
     public ResponseEntity<Void> deleteContribution(@PathVariable("contribution_id") long id) {
         System.out.println("Fetching & Deleting Contribution with id " + id);
-        contributionService.deleteContribution(id);
+        contributionService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

@@ -2,7 +2,7 @@ package com.cevex.easyevent.springmvc.app.controller;
 
 import com.cevex.easyevent.springmvc.app.model.Event;
 import com.cevex.easyevent.springmvc.app.service.EventService;
-import com.cevex.easyevent.springmvc.share.rest.RestControllerValidator;
+import com.cevex.easyevent.springmvc.share.framework.RestControllerValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -34,7 +34,7 @@ public class EventController extends RestControllerValidator {
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE
     )
     public ResponseEntity<List<Event>> getAllEvents() {
-        List<Event> events = eventService.getAllEvents();
+        List<Event> events = eventService.getAll();
         if (events.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
@@ -52,7 +52,7 @@ public class EventController extends RestControllerValidator {
     public ResponseEntity<Event> getEvent(
             @PathVariable("event_id") long id) {
         System.out.println("Fetching Event with id " + id);
-        Event event = eventService.getEvent(id);
+        Event event = eventService.get(id);
         return new ResponseEntity<>(event, HttpStatus.OK);
     }
 
@@ -90,7 +90,7 @@ public class EventController extends RestControllerValidator {
     public ResponseEntity<Event> updateEvent(@PathVariable("event_id") long id, @RequestBody @Valid Event event, BindingResult bindingResult) {
         System.out.println("Updating Event " + id);
         validateResource(bindingResult);
-        Event updatedEvent = eventService.updateEvent(id, event);
+        Event updatedEvent = eventService.update(id, event);
         return new ResponseEntity<>(updatedEvent, HttpStatus.OK);
     }
 
@@ -104,7 +104,7 @@ public class EventController extends RestControllerValidator {
     )
     public ResponseEntity<Void> deleteEvent(@PathVariable("event_id") long id) {
         System.out.println("Fetching & Deleting Event with id " + id);
-        eventService.deleteEvent(id);
+        eventService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

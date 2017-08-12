@@ -2,7 +2,7 @@ package com.cevex.easyevent.springmvc.app.controller;
 
 import com.cevex.easyevent.springmvc.app.model.Expense;
 import com.cevex.easyevent.springmvc.app.service.ExpenseService;
-import com.cevex.easyevent.springmvc.share.rest.RestControllerValidator;
+import com.cevex.easyevent.springmvc.share.framework.RestControllerValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -34,7 +34,7 @@ public class ExpenseController extends RestControllerValidator {
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE
     )
     public ResponseEntity<List<Expense>> getAllExpenses() {
-        List<Expense> expenses = expenseService.getAllExpenses();
+        List<Expense> expenses = expenseService.getAll();
         if (expenses.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
@@ -51,7 +51,7 @@ public class ExpenseController extends RestControllerValidator {
     )
     public ResponseEntity<Expense> getExpense(@PathVariable("expense_id") long id) {
         System.out.println("Fetching Expense with id " + id);
-        Expense expense = expenseService.getExpense(id);
+        Expense expense = expenseService.get(id);
         return new ResponseEntity<>(expense, HttpStatus.OK);
     }
 
@@ -89,7 +89,7 @@ public class ExpenseController extends RestControllerValidator {
     public ResponseEntity<Expense> updateExpense(@PathVariable("expense_id") long id, @RequestBody @Valid Expense expense, BindingResult bindingResult) {
         System.out.println("Updating Expense " + id);
         validateResource(bindingResult);
-        Expense updatedExpense = expenseService.updateExpense(id, expense);
+        Expense updatedExpense = expenseService.update(id, expense);
         return new ResponseEntity<>(updatedExpense, HttpStatus.OK);
     }
 
@@ -103,7 +103,7 @@ public class ExpenseController extends RestControllerValidator {
     )
     public ResponseEntity<Void> deleteExpense(@PathVariable("expense_id") long id) {
         System.out.println("Fetching & Deleting Expense with id " + id);
-        expenseService.deleteExpense(id);
+        expenseService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

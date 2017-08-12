@@ -2,27 +2,18 @@ package com.cevex.easyevent.springmvc.app.mapper;
 
 import com.cevex.easyevent.springmvc.app.dao.entity.ContributionEntity;
 import com.cevex.easyevent.springmvc.app.model.Contribution;
+import com.cevex.easyevent.springmvc.share.framework.AbstractMapper;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Service
-public class ContributionMapper {
+public class ContributionMapper extends AbstractMapper<Contribution, ContributionEntity> {
 
     //=========================================================================
     //          DAO -> Model
     //=========================================================================
 
-    public List<Contribution> mapContributionList(List<ContributionEntity> entityList) {
-        List<Contribution> contributionList = new ArrayList<>();
-        for (ContributionEntity entity : entityList) {
-            contributionList.add(mapContribution(entity));
-        }
-        return contributionList;
-    }
-
-    public Contribution mapContribution(ContributionEntity entity) {
+    @Override
+    public Contribution mapToModel(ContributionEntity entity) {
         Contribution contribution = new Contribution();
 
         contribution.setAmount(entity.getAmount());
@@ -36,17 +27,8 @@ public class ContributionMapper {
     //          Model -> DAO
     //=========================================================================
 
-    public ContributionEntity mapContribution(Contribution contribution) {
-        ContributionEntity entity = new ContributionEntity();
-
-        entity.setExpenseId(contribution.getExpenseId());
-        entity.setParticipantId(contribution.getParticipantId());
-        updateContributionEntity(entity, contribution);
-
-        return entity;
-    }
-
-    public void updateContributionEntity(ContributionEntity entity, Contribution contribution) {
-        entity.setAmount(contribution.getAmount());
+    @Override
+    public void updateEntity(ContributionEntity entity, Contribution model) {
+        entity.setAmount(model.getAmount());
     }
 }

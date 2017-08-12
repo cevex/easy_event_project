@@ -1,4 +1,4 @@
-package com.cevex.easyevent.springmvc.share.rest.error.model;
+package com.cevex.easyevent.springmvc.share.framework.error.model;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 

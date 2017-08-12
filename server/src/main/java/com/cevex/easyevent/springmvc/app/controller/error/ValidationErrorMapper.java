@@ -1,6 +1,6 @@
 package com.cevex.easyevent.springmvc.app.controller.error;
 
-import com.cevex.easyevent.springmvc.share.rest.error.model.FieldValidationErrorCause;
+import com.cevex.easyevent.springmvc.share.framework.error.model.FieldValidationErrorCause;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
