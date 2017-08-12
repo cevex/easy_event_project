@@ -1,7 +1,10 @@
 package com.cevex.easyevent.springmvc.app.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import javax.validation.constraints.Size;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class User {
 
     //=========================================================================
@@ -38,6 +41,10 @@ public class User {
         this.money = money;
         this.image = image;
     }
+
+    //=========================================================================
+    //          Getter/Setter
+    //=========================================================================
 
     public Long getId() {
         return id;

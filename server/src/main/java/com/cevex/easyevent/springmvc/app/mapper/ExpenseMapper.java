@@ -48,7 +48,6 @@ public class ExpenseMapper {
     }
 
     public void updateExpenseEntity(ExpenseEntity entity, Expense expense) {
-        entity.setId(expense.getId());
         entity.setEventId(expense.getEventId());
         entity.setLabel(expense.getLabel());
         entity.setDate(new LocalDateTime(expense.getDate()));

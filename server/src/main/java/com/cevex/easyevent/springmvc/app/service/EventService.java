@@ -2,10 +2,10 @@ package com.cevex.easyevent.springmvc.app.service;
 
 import com.cevex.easyevent.springmvc.app.dao.EventDao;
 import com.cevex.easyevent.springmvc.app.dao.entity.EventEntity;
-import com.cevex.easyevent.springmvc.share.rest.error.exception.AlreadyExistsException;
-import com.cevex.easyevent.springmvc.share.rest.error.exception.NotFoundException;
 import com.cevex.easyevent.springmvc.app.mapper.EventMapper;
 import com.cevex.easyevent.springmvc.app.model.Event;
+import com.cevex.easyevent.springmvc.share.rest.error.exception.AlreadyExistsException;
+import com.cevex.easyevent.springmvc.share.rest.error.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,9 +16,17 @@ import java.util.List;
 @Transactional
 public class EventService {
 
+    //=========================================================================
+    //          Attributes
+    //=========================================================================
+
     private EventDao eventDao;
 
     private EventMapper eventMapper;
+
+    //=========================================================================
+    //          Constructor
+    //=========================================================================
 
     @Autowired
     public EventService(EventDao eventDao, EventMapper eventMapper) {
@@ -26,9 +34,17 @@ public class EventService {
         this.eventMapper = eventMapper;
     }
 
+    //=========================================================================
+    //          Control
+    //=========================================================================
+
     private boolean isEventExist(Long id) {
-        return id != null && eventDao.findEvent(id) != null;
+        return id != null && this.findEvent(id) != null;
     }
+
+    //=========================================================================
+    //          Retrieve
+    //=========================================================================
 
     public List<Event> getAllEvents() {
         List<EventEntity> events = eventDao.findAllEvents();
@@ -50,6 +66,10 @@ public class EventService {
         return eventEntity;
     }
 
+    //=========================================================================
+    //          Create
+    //=========================================================================
+
     public void createEvent(Event event) {
         if (!isEventExist(event.getId())) {
             eventDao.saveEvent(eventMapper.mapEvent(event));
@@ -58,11 +78,19 @@ public class EventService {
         }
     }
 
+    //=========================================================================
+    //          Update
+    //=========================================================================
+
     public Event updateEvent(long id, Event event) {
         EventEntity entity = findEvent(id);
         eventMapper.updateEventEntity(entity, event);
         return event;
     }
+
+    //=========================================================================
+    //          Delete
+    //=========================================================================
 
     public void deleteEvent(long id) {
         if (isEventExist(id)) {

@@ -2,10 +2,10 @@ package com.cevex.easyevent.springmvc.app.service;
 
 import com.cevex.easyevent.springmvc.app.dao.ContributionDao;
 import com.cevex.easyevent.springmvc.app.dao.entity.ContributionEntity;
-import com.cevex.easyevent.springmvc.share.rest.error.exception.AlreadyExistsException;
-import com.cevex.easyevent.springmvc.share.rest.error.exception.NotFoundException;
 import com.cevex.easyevent.springmvc.app.mapper.ContributionMapper;
 import com.cevex.easyevent.springmvc.app.model.Contribution;
+import com.cevex.easyevent.springmvc.share.rest.error.exception.AlreadyExistsException;
+import com.cevex.easyevent.springmvc.share.rest.error.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,9 +16,17 @@ import java.util.List;
 @Transactional
 public class ContributionService {
 
+    //=========================================================================
+    //          Attributes
+    //=========================================================================
+
     private ContributionDao contributionDao;
 
     private ContributionMapper contributionMapper;
+
+    //=========================================================================
+    //          Constructor
+    //=========================================================================
 
     @Autowired
     public ContributionService(ContributionDao contributionDao, ContributionMapper contributionMapper) {
@@ -26,9 +34,17 @@ public class ContributionService {
         this.contributionMapper = contributionMapper;
     }
 
+    //=========================================================================
+    //          Control
+    //=========================================================================
+
     private boolean isContributionExist(Long id) {
-        return id != null && contributionDao.findContribution(id) != null;
+        return id != null && this.findContribution(id) != null;
     }
+
+    //=========================================================================
+    //          Retrieve
+    //=========================================================================
 
     public List<Contribution> getAllContributions() {
         List<ContributionEntity> contributions = contributionDao.findAllContributions();
@@ -50,6 +66,10 @@ public class ContributionService {
         return contributionEntity;
     }
 
+    //=========================================================================
+    //          Create
+    //=========================================================================
+
     public void createContribution(Contribution contribution) {
         if (!isContributionExist(contribution.getId())) {
             contributionDao.saveContribution(contributionMapper.mapContribution(contribution));
@@ -58,11 +78,19 @@ public class ContributionService {
         }
     }
 
+    //=========================================================================
+    //          Update
+    //=========================================================================
+
     public Contribution updateContribution(long id, Contribution contribution) {
         ContributionEntity entity = findContribution(id);
         contributionMapper.updateContributionEntity(entity, contribution);
         return contribution;
     }
+
+    //=========================================================================
+    //          Delete
+    //=========================================================================
 
     public void deleteContribution(long id) {
         if (isContributionExist(id)) {

@@ -1,7 +1,7 @@
 package com.cevex.easyevent.springmvc.app.controller;
 
-import com.cevex.easyevent.springmvc.app.model.Event;
-import com.cevex.easyevent.springmvc.app.service.EventService;
+import com.cevex.easyevent.springmvc.app.model.Expense;
+import com.cevex.easyevent.springmvc.app.service.ExpenseService;
 import com.cevex.easyevent.springmvc.share.rest.RestControllerValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -20,91 +20,90 @@ import java.util.List;
 
 @org.springframework.web.bind.annotation.RestController
 @RequestMapping(value = "")
-public class EventController extends RestControllerValidator {
+public class ExpenseController extends RestControllerValidator {
 
     @Autowired
-    private EventService eventService;
+    private ExpenseService expenseService;
 
     //=============================================================================================
-    //                          Retrieve All Event
+    //                          Retrieve All Expense
     //=============================================================================================
 
     @RequestMapping(
-            value = "/events", method = RequestMethod.GET,
+            value = "/expenses", method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE
     )
-    public ResponseEntity<List<Event>> getAllEvents() {
-        List<Event> events = eventService.getAllEvents();
-        if (events.isEmpty()) {
+    public ResponseEntity<List<Expense>> getAllExpenses() {
+        List<Expense> expenses = expenseService.getAllExpenses();
+        if (expenses.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<>(events, HttpStatus.OK);
+        return new ResponseEntity<>(expenses, HttpStatus.OK);
     }
 
     //=============================================================================================
-    //                          Retrieve Single Event
+    //                          Retrieve Single Expense
     //=============================================================================================
 
     @RequestMapping(
-            value = "/events/{event_id}", method = RequestMethod.GET,
+            value = "/expenses/{expense_id}", method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE
     )
-    public ResponseEntity<Event> getEvent(
-            @PathVariable("event_id") long id) {
-        System.out.println("Fetching Event with id " + id);
-        Event event = eventService.getEvent(id);
-        return new ResponseEntity<>(event, HttpStatus.OK);
+    public ResponseEntity<Expense> getExpense(@PathVariable("expense_id") long id) {
+        System.out.println("Fetching Expense with id " + id);
+        Expense expense = expenseService.getExpense(id);
+        return new ResponseEntity<>(expense, HttpStatus.OK);
     }
 
     //=============================================================================================
-    //                          Create Single Event
+    //                          Create Single Expense
     //=============================================================================================
 
     @RequestMapping(
-            value = "/events", method = RequestMethod.POST,
+            value = "/expenses", method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE
     )
-    public ResponseEntity<Void> createEvent(@RequestBody @Valid Event event, BindingResult bindingResult, UriComponentsBuilder ucBuilder) {
-        System.out.println("Creating Event " + event.getTitle());
+    public ResponseEntity<Void> createExpense(@RequestBody @Valid Expense expense, BindingResult bindingResult, UriComponentsBuilder ucBuilder) {
+        System.out.println("Creating Expense " + expense.getId());
 
         validateResource(bindingResult);
 
-        eventService.createEvent(event);
+        expenseService.createExpense(expense);
 
         HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(ucBuilder.path("/events/{id}").buildAndExpand(event.getId()).toUri());
+        headers.setLocation(ucBuilder.path("/expenses/{id}").buildAndExpand(expense.getId()).toUri());
 
         return new ResponseEntity<>(headers, HttpStatus.CREATED);
     }
 
     //=============================================================================================
-    //                          Update Single Event
+    //                          Update Single Expense
     //=============================================================================================
 
     @RequestMapping(
-            value = "/events/{event_id}", method = RequestMethod.PUT,
+            value = "/expenses/{expense_id}", method = RequestMethod.PUT,
             consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE
     )
-    public ResponseEntity<Event> updateEvent(@PathVariable("event_id") long id, @RequestBody @Valid Event event, BindingResult bindingResult) {
-        System.out.println("Updating Event " + id);
+    public ResponseEntity<Expense> updateExpense(@PathVariable("expense_id") long id, @RequestBody @Valid Expense expense, BindingResult bindingResult) {
+        System.out.println("Updating Expense " + id);
         validateResource(bindingResult);
-        Event updatedEvent = eventService.updateEvent(id, event);
-        return new ResponseEntity<>(updatedEvent, HttpStatus.OK);
+        Expense updatedExpense = expenseService.updateExpense(id, expense);
+        return new ResponseEntity<>(updatedExpense, HttpStatus.OK);
     }
 
     //=============================================================================================
-    //                          Delete an Event
+    //                          Delete an Expense
     //=============================================================================================
 
     @RequestMapping(
-            value = "/events/{event_id}", method = RequestMethod.DELETE,
+            value = "/expenses/{expense_id}", method = RequestMethod.DELETE,
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE
     )
-    public ResponseEntity<Void> deleteEvent(@PathVariable("event_id") long id) {
-        System.out.println("Fetching & Deleting Event with id " + id);
-        eventService.deleteEvent(id);
+    public ResponseEntity<Void> deleteExpense(@PathVariable("expense_id") long id) {
+        System.out.println("Fetching & Deleting Expense with id " + id);
+        expenseService.deleteExpense(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

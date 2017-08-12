@@ -1,7 +1,7 @@
 package com.cevex.easyevent.springmvc.app.controller;
 
-import com.cevex.easyevent.springmvc.app.model.Event;
-import com.cevex.easyevent.springmvc.app.service.EventService;
+import com.cevex.easyevent.springmvc.app.model.Participant;
+import com.cevex.easyevent.springmvc.app.service.ParticipantService;
 import com.cevex.easyevent.springmvc.share.rest.RestControllerValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -20,91 +20,90 @@ import java.util.List;
 
 @org.springframework.web.bind.annotation.RestController
 @RequestMapping(value = "")
-public class EventController extends RestControllerValidator {
+public class ParticipantController extends RestControllerValidator {
 
     @Autowired
-    private EventService eventService;
+    private ParticipantService participantService;
 
     //=============================================================================================
-    //                          Retrieve All Event
+    //                          Retrieve All Participant
     //=============================================================================================
 
     @RequestMapping(
-            value = "/events", method = RequestMethod.GET,
+            value = "/participants", method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE
     )
-    public ResponseEntity<List<Event>> getAllEvents() {
-        List<Event> events = eventService.getAllEvents();
-        if (events.isEmpty()) {
+    public ResponseEntity<List<Participant>> getAllParticipants() {
+        List<Participant> participants = participantService.getAllParticipants();
+        if (participants.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<>(events, HttpStatus.OK);
+        return new ResponseEntity<>(participants, HttpStatus.OK);
     }
 
     //=============================================================================================
-    //                          Retrieve Single Event
+    //                          Retrieve Single Participant
     //=============================================================================================
 
     @RequestMapping(
-            value = "/events/{event_id}", method = RequestMethod.GET,
+            value = "/participants/{participant_id}", method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE
     )
-    public ResponseEntity<Event> getEvent(
-            @PathVariable("event_id") long id) {
-        System.out.println("Fetching Event with id " + id);
-        Event event = eventService.getEvent(id);
-        return new ResponseEntity<>(event, HttpStatus.OK);
+    public ResponseEntity<Participant> getParticipant(@PathVariable("participant_id") long id) {
+        System.out.println("Fetching Participant with id " + id);
+        Participant participant = participantService.getParticipant(id);
+        return new ResponseEntity<>(participant, HttpStatus.OK);
     }
 
     //=============================================================================================
-    //                          Create Single Event
+    //                          Create Single Participant
     //=============================================================================================
 
     @RequestMapping(
-            value = "/events", method = RequestMethod.POST,
+            value = "/participants", method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE
     )
-    public ResponseEntity<Void> createEvent(@RequestBody @Valid Event event, BindingResult bindingResult, UriComponentsBuilder ucBuilder) {
-        System.out.println("Creating Event " + event.getTitle());
+    public ResponseEntity<Void> createParticipant(@RequestBody @Valid Participant participant, BindingResult bindingResult, UriComponentsBuilder ucBuilder) {
+        System.out.println("Creating Participant " + participant.getId());
 
         validateResource(bindingResult);
 
-        eventService.createEvent(event);
+        participantService.createParticipant(participant);
 
         HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(ucBuilder.path("/events/{id}").buildAndExpand(event.getId()).toUri());
+        headers.setLocation(ucBuilder.path("/participants/{id}").buildAndExpand(participant.getId()).toUri());
 
         return new ResponseEntity<>(headers, HttpStatus.CREATED);
     }
 
     //=============================================================================================
-    //                          Update Single Event
+    //                          Update Single Participant
     //=============================================================================================
 
     @RequestMapping(
-            value = "/events/{event_id}", method = RequestMethod.PUT,
+            value = "/participants/{participant_id}", method = RequestMethod.PUT,
             consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE
     )
-    public ResponseEntity<Event> updateEvent(@PathVariable("event_id") long id, @RequestBody @Valid Event event, BindingResult bindingResult) {
-        System.out.println("Updating Event " + id);
+    public ResponseEntity<Participant> updateParticipant(@PathVariable("participant_id") long id, @RequestBody @Valid Participant participant, BindingResult bindingResult) {
+        System.out.println("Updating Participant " + id);
         validateResource(bindingResult);
-        Event updatedEvent = eventService.updateEvent(id, event);
-        return new ResponseEntity<>(updatedEvent, HttpStatus.OK);
+        Participant updatedParticipant = participantService.updateParticipant(id, participant);
+        return new ResponseEntity<>(updatedParticipant, HttpStatus.OK);
     }
 
     //=============================================================================================
-    //                          Delete an Event
+    //                          Delete an Participant
     //=============================================================================================
 
     @RequestMapping(
-            value = "/events/{event_id}", method = RequestMethod.DELETE,
+            value = "/participants/{participant_id}", method = RequestMethod.DELETE,
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE
     )
-    public ResponseEntity<Void> deleteEvent(@PathVariable("event_id") long id) {
-        System.out.println("Fetching & Deleting Event with id " + id);
-        eventService.deleteEvent(id);
+    public ResponseEntity<Void> deleteParticipant(@PathVariable("participant_id") long id) {
+        System.out.println("Fetching & Deleting Participant with id " + id);
+        participantService.deleteParticipant(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

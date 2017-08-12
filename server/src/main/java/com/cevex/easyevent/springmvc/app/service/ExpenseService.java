@@ -2,10 +2,10 @@ package com.cevex.easyevent.springmvc.app.service;
 
 import com.cevex.easyevent.springmvc.app.dao.ExpenseDao;
 import com.cevex.easyevent.springmvc.app.dao.entity.ExpenseEntity;
-import com.cevex.easyevent.springmvc.share.rest.error.exception.AlreadyExistsException;
-import com.cevex.easyevent.springmvc.share.rest.error.exception.NotFoundException;
 import com.cevex.easyevent.springmvc.app.mapper.ExpenseMapper;
 import com.cevex.easyevent.springmvc.app.model.Expense;
+import com.cevex.easyevent.springmvc.share.rest.error.exception.AlreadyExistsException;
+import com.cevex.easyevent.springmvc.share.rest.error.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,9 +16,17 @@ import java.util.List;
 @Transactional
 public class ExpenseService {
 
+    //=========================================================================
+    //          Attributes
+    //=========================================================================
+
     private ExpenseDao expenseDao;
 
     private ExpenseMapper expenseMapper;
+
+    //=========================================================================
+    //          Constructor
+    //=========================================================================
 
     @Autowired
     public ExpenseService(ExpenseDao expenseDao, ExpenseMapper expenseMapper) {
@@ -26,9 +34,17 @@ public class ExpenseService {
         this.expenseMapper = expenseMapper;
     }
 
+    //=========================================================================
+    //          Control
+    //=========================================================================
+
     private boolean isExpenseExist(Long id) {
-        return id != null && expenseDao.findExpense(id) != null;
+        return id != null && this.findExpense(id) != null;
     }
+
+    //=========================================================================
+    //          Retrieve
+    //=========================================================================
 
     public List<Expense> getAllExpenses() {
         List<ExpenseEntity> expenses = expenseDao.findAllExpenses();
@@ -50,6 +66,10 @@ public class ExpenseService {
         return expenseEntity;
     }
 
+    //=========================================================================
+    //          Create
+    //=========================================================================
+
     public void createExpense(Expense expense) {
         if (!isExpenseExist(expense.getId())) {
             expenseDao.saveExpense(expenseMapper.mapExpense(expense));
@@ -58,11 +78,19 @@ public class ExpenseService {
         }
     }
 
+    //=========================================================================
+    //          Update
+    //=========================================================================
+
     public Expense updateExpense(long id, Expense expense) {
         ExpenseEntity entity = findExpense(id);
         expenseMapper.updateExpenseEntity(entity, expense);
         return expense;
     }
+
+    //=========================================================================
+    //          Delete
+    //=========================================================================
 
     public void deleteExpense(long id) {
         if (isExpenseExist(id)) {

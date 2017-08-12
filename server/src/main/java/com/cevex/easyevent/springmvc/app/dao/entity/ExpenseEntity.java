@@ -5,10 +5,11 @@ import org.joda.time.LocalDateTime;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "t_expense")
-public class ExpenseEntity {
+public class ExpenseEntity implements Serializable {
 
     //=========================================================================
     //          Attributes

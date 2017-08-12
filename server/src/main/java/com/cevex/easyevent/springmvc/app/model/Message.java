@@ -1,5 +1,8 @@
 package com.cevex.easyevent.springmvc.app.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Message {
 
     //=========================================================================

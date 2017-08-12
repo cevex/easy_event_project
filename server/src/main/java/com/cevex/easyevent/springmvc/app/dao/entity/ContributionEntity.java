@@ -1,24 +1,23 @@
 package com.cevex.easyevent.springmvc.app.dao.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "t_contribution")
-public class ContributionEntity {
+@IdClass(ContributionPK.class)
+public class ContributionEntity implements Serializable {
 
     //=========================================================================
     //          Attributes
     //=========================================================================
 
     @Id
-    @Column(name = "contribution_id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     @Column(name = "contribution_expense_id", nullable = false)
     private Long expenseId;
 
-    @Column(name = "contribution_participant_id")
+    @Id
+    @Column(name = "contribution_participant_id", nullable = false)
     private String participantId;
 
     @Column(name = "contribution_amount", nullable = false)
@@ -27,14 +26,6 @@ public class ContributionEntity {
     //=========================================================================
     //          Getter/Setter
     //=========================================================================
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public Long getExpenseId() {
         return expenseId;

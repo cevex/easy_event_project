@@ -25,7 +25,6 @@ public class ContributionMapper {
     public Contribution mapContribution(ContributionEntity entity) {
         Contribution contribution = new Contribution();
 
-        contribution.setId(entity.getId());
         contribution.setAmount(entity.getAmount());
         contribution.setExpenseId(entity.getExpenseId());
         contribution.setParticipantId(entity.getParticipantId());
@@ -37,11 +36,11 @@ public class ContributionMapper {
     //          Model -> DAO
     //=========================================================================
 
-
     public ContributionEntity mapContribution(Contribution contribution) {
         ContributionEntity entity = new ContributionEntity();
 
-        entity.setId(contribution.getId());
+        entity.setExpenseId(contribution.getExpenseId());
+        entity.setParticipantId(contribution.getParticipantId());
         updateContributionEntity(entity, contribution);
 
         return entity;
@@ -49,7 +48,5 @@ public class ContributionMapper {
 
     public void updateContributionEntity(ContributionEntity entity, Contribution contribution) {
         entity.setAmount(contribution.getAmount());
-        entity.setExpenseId(contribution.getExpenseId());
-        entity.setParticipantId(contribution.getParticipantId());
     }
 }

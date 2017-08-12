@@ -59,8 +59,6 @@ CREATE TABLE t_participant (
     participant_user_name varchar(50)
 );
 
-/*participant_user_id bigserial references t_user(username)*/
-
 /*######################################################################################*/
 /*                     Expense                                                          */
 /*######################################################################################*/

@@ -1,7 +1,7 @@
 package com.cevex.easyevent.springmvc.app.controller;
 
-import com.cevex.easyevent.springmvc.share.rest.RestControllerValidator;
 import com.cevex.easyevent.springmvc.app.model.User;
+import com.cevex.easyevent.springmvc.share.rest.RestControllerValidator;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -18,8 +18,10 @@ public class UserController extends RestControllerValidator {
     //                          Retrieve Single Event
     //=============================================================================================
 
-    @RequestMapping(value = "/user/{user_id}", method = RequestMethod.GET,
-            produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @RequestMapping(
+            value = "/user/{user_id}", method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_UTF8_VALUE
+    )
     public ResponseEntity<User> getUser(@PathVariable("user_id") long id) {
         System.out.println("Fetching User with id " + id);
         User user = new User();

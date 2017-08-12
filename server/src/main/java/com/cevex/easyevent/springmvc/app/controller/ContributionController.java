@@ -1,7 +1,7 @@
 package com.cevex.easyevent.springmvc.app.controller;
 
-import com.cevex.easyevent.springmvc.app.model.Event;
-import com.cevex.easyevent.springmvc.app.service.EventService;
+import com.cevex.easyevent.springmvc.app.model.Contribution;
+import com.cevex.easyevent.springmvc.app.service.ContributionService;
 import com.cevex.easyevent.springmvc.share.rest.RestControllerValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -20,91 +20,90 @@ import java.util.List;
 
 @org.springframework.web.bind.annotation.RestController
 @RequestMapping(value = "")
-public class EventController extends RestControllerValidator {
+public class ContributionController extends RestControllerValidator {
 
     @Autowired
-    private EventService eventService;
+    private ContributionService contributionService;
 
     //=============================================================================================
-    //                          Retrieve All Event
+    //                          Retrieve All Contributions
     //=============================================================================================
 
     @RequestMapping(
-            value = "/events", method = RequestMethod.GET,
+            value = "/contributions", method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE
     )
-    public ResponseEntity<List<Event>> getAllEvents() {
-        List<Event> events = eventService.getAllEvents();
-        if (events.isEmpty()) {
+    public ResponseEntity<List<Contribution>> getAllContributions() {
+        List<Contribution> contributions = contributionService.getAllContributions();
+        if (contributions.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<>(events, HttpStatus.OK);
+        return new ResponseEntity<>(contributions, HttpStatus.OK);
     }
 
     //=============================================================================================
-    //                          Retrieve Single Event
+    //                          Retrieve Single Contribution
     //=============================================================================================
 
     @RequestMapping(
-            value = "/events/{event_id}", method = RequestMethod.GET,
+            value = "/contributions/{contribution_id}", method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE
     )
-    public ResponseEntity<Event> getEvent(
-            @PathVariable("event_id") long id) {
-        System.out.println("Fetching Event with id " + id);
-        Event event = eventService.getEvent(id);
-        return new ResponseEntity<>(event, HttpStatus.OK);
+    public ResponseEntity<Contribution> getContribution(@PathVariable("contribution_id") long id) {
+        System.out.println("Fetching Contribution with id " + id);
+        Contribution contribution = contributionService.getContribution(id);
+        return new ResponseEntity<>(contribution, HttpStatus.OK);
     }
 
     //=============================================================================================
-    //                          Create Single Event
+    //                          Create Single Contribution
     //=============================================================================================
 
     @RequestMapping(
-            value = "/events", method = RequestMethod.POST,
+            value = "/contributions", method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE
     )
-    public ResponseEntity<Void> createEvent(@RequestBody @Valid Event event, BindingResult bindingResult, UriComponentsBuilder ucBuilder) {
-        System.out.println("Creating Event " + event.getTitle());
+    public ResponseEntity<Void> createContribution(@RequestBody @Valid Contribution contribution, BindingResult bindingResult, UriComponentsBuilder ucBuilder) {
+        System.out.println("Creating Contribution " + contribution.getId());
 
         validateResource(bindingResult);
 
-        eventService.createEvent(event);
+        contributionService.createContribution(contribution);
 
         HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(ucBuilder.path("/events/{id}").buildAndExpand(event.getId()).toUri());
+        headers.setLocation(ucBuilder.path("/contributions/{id}").buildAndExpand(contribution.getId()).toUri());
 
         return new ResponseEntity<>(headers, HttpStatus.CREATED);
     }
 
     //=============================================================================================
-    //                          Update Single Event
+    //                          Update Single Contribution
     //=============================================================================================
 
     @RequestMapping(
-            value = "/events/{event_id}", method = RequestMethod.PUT,
+            value = "/contributions/{contribution_id}", method = RequestMethod.PUT,
             consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE
     )
-    public ResponseEntity<Event> updateEvent(@PathVariable("event_id") long id, @RequestBody @Valid Event event, BindingResult bindingResult) {
-        System.out.println("Updating Event " + id);
+    public ResponseEntity<Contribution> updateContribution(@PathVariable("contribution_id") long id, @RequestBody @Valid Contribution contribution, BindingResult bindingResult) {
+        System.out.println("Updating Contribution " + id);
         validateResource(bindingResult);
-        Event updatedEvent = eventService.updateEvent(id, event);
-        return new ResponseEntity<>(updatedEvent, HttpStatus.OK);
+        Contribution updatedContribution = contributionService.updateContribution(id, contribution);
+        return new ResponseEntity<>(updatedContribution, HttpStatus.OK);
     }
 
     //=============================================================================================
-    //                          Delete an Event
+    //                          Delete an Contribution
     //=============================================================================================
 
     @RequestMapping(
-            value = "/events/{event_id}", method = RequestMethod.DELETE,
+            value = "/contributions/{contribution_id}", method = RequestMethod.DELETE,
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE
     )
-    public ResponseEntity<Void> deleteEvent(@PathVariable("event_id") long id) {
-        System.out.println("Fetching & Deleting Event with id " + id);
-        eventService.deleteEvent(id);
+    public ResponseEntity<Void> deleteContribution(@PathVariable("contribution_id") long id) {
+        System.out.println("Fetching & Deleting Contribution with id " + id);
+        contributionService.deleteContribution(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

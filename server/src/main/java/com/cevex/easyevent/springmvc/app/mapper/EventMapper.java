@@ -11,6 +11,10 @@ import java.util.List;
 @Service
 public class EventMapper {
 
+    //=========================================================================
+    //          DAO -> Model
+    //=========================================================================
+
     public List<Event> mapEventList(List<EventEntity> entityList) {
         List<Event> eventList = new ArrayList<>();
         for (EventEntity entity : entityList) {
@@ -31,6 +35,10 @@ public class EventMapper {
 
         return event;
     }
+
+    //=========================================================================
+    //          Model -> DAO
+    //=========================================================================
 
     public EventEntity mapEvent(Event event) {
         EventEntity entity = new EventEntity();

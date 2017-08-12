@@ -1,10 +1,11 @@
 package com.cevex.easyevent.springmvc.app.dao.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "t_participant")
-public class ParticipantEntity {
+public class ParticipantEntity implements Serializable {
 
     //=========================================================================
     //          Attributes

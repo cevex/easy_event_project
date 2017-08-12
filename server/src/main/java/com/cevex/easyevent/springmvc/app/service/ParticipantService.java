@@ -2,10 +2,10 @@ package com.cevex.easyevent.springmvc.app.service;
 
 import com.cevex.easyevent.springmvc.app.dao.ParticipantDao;
 import com.cevex.easyevent.springmvc.app.dao.entity.ParticipantEntity;
-import com.cevex.easyevent.springmvc.share.rest.error.exception.AlreadyExistsException;
-import com.cevex.easyevent.springmvc.share.rest.error.exception.NotFoundException;
 import com.cevex.easyevent.springmvc.app.mapper.ParticipantMapper;
 import com.cevex.easyevent.springmvc.app.model.Participant;
+import com.cevex.easyevent.springmvc.share.rest.error.exception.AlreadyExistsException;
+import com.cevex.easyevent.springmvc.share.rest.error.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,9 +16,17 @@ import java.util.List;
 @Transactional
 public class ParticipantService {
 
+    //=========================================================================
+    //          Attributes
+    //=========================================================================
+
     private ParticipantDao participantDao;
 
     private ParticipantMapper participantMapper;
+
+    //=========================================================================
+    //          Constructor
+    //=========================================================================
 
     @Autowired
     public ParticipantService(ParticipantDao participantDao, ParticipantMapper participantMapper) {
@@ -26,9 +34,17 @@ public class ParticipantService {
         this.participantMapper = participantMapper;
     }
 
+    //=========================================================================
+    //          Control
+    //=========================================================================
+
     private boolean isParticipantExist(Long id) {
-        return id != null && participantDao.findParticipant(id) != null;
+        return id != null && this.findParticipant(id) != null;
     }
+
+    //=========================================================================
+    //          Retrieve
+    //=========================================================================
 
     public List<Participant> getAllParticipants() {
         List<ParticipantEntity> participants = participantDao.findAllParticipants();
@@ -50,6 +66,10 @@ public class ParticipantService {
         return participantEntity;
     }
 
+    //=========================================================================
+    //          Create
+    //=========================================================================
+
     public void createParticipant(Participant participant) {
         if (!isParticipantExist(participant.getId())) {
             participantDao.saveParticipant(participantMapper.mapParticipant(participant));
@@ -58,11 +78,19 @@ public class ParticipantService {
         }
     }
 
+    //=========================================================================
+    //          Update
+    //=========================================================================
+
     public Participant updateParticipant(long id, Participant participant) {
         ParticipantEntity entity = findParticipant(id);
         participantMapper.updateParticipantEntity(entity, participant);
         return participant;
     }
+
+    //=========================================================================
+    //          Delete
+    //=========================================================================
 
     public void deleteParticipant(long id) {
         if (isParticipantExist(id)) {
