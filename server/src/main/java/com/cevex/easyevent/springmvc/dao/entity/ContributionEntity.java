@@ -3,7 +3,7 @@ package com.cevex.easyevent.springmvc.dao.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "t_event")
+@Table(name = "t_contribution")
 public class ContributionEntity {
 
     //=========================================================================
@@ -11,7 +11,7 @@ public class ContributionEntity {
     //=========================================================================
 
     @Id
-    @Column(name = "expense_id", nullable = false)
+    @Column(name = "contribution_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 

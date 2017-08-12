@@ -7,6 +7,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Expense {
@@ -28,6 +29,8 @@ public class Expense {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'")
     private DateTime date;
 
+    private List<Contribution> contributionList;
+
     //=========================================================================
     //          Constructor
     //=========================================================================
@@ -35,17 +38,18 @@ public class Expense {
     public Expense() {
     }
 
-    public Expense(Long id, Long eventId, String label, DateTime date) {
+    public Expense(Long id, Long eventId, String label, DateTime date, List<Contribution> contributionList) {
         this.id = id;
         this.eventId = eventId;
         this.label = label;
         this.date = date;
+        this.contributionList = contributionList;
     }
 
     //=========================================================================
     //          Getter/Setter
     //=========================================================================
-    
+
     public Long getId() {
         return id;
     }
@@ -76,5 +80,13 @@ public class Expense {
 
     public void setDate(DateTime date) {
         this.date = date;
+    }
+
+    public List<Contribution> getContributionList() {
+        return contributionList;
+    }
+
+    public void setContributionList(List<Contribution> contributionList) {
+        this.contributionList = contributionList;
     }
 }

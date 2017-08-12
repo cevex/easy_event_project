@@ -7,6 +7,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Event {
@@ -25,18 +26,20 @@ public class Event {
     private String place;
 
     @NotNull
-//    @DateFormatConstraint
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'hh:mm:ss")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'")
     private DateTime start;
 
     @NotNull
-//    @DateFormatConstraint
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'hh:mm:ss")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'")
     private DateTime end;
 
     private Byte[] image;
+
+    private Participant participant;
+
+    private List<Expense> expenses;
 
     //=========================================================================
     //          Constructor
@@ -45,13 +48,15 @@ public class Event {
     public Event() {
     }
 
-    public Event(Long id, String title, String place, DateTime start, DateTime end, Byte[] image) {
+    public Event(Long id, String title, String place, DateTime start, DateTime end, Byte[] image, Participant participant, List<Expense> expenses) {
         this.id = id;
         this.title = title;
         this.place = place;
         this.start = start;
         this.end = end;
         this.image = image;
+        this.participant = participant;
+        this.expenses = expenses;
     }
 
     //=========================================================================
@@ -104,5 +109,21 @@ public class Event {
 
     public void setImage(Byte[] image) {
         this.image = image;
+    }
+
+    public Participant getParticipant() {
+        return participant;
+    }
+
+    public void setParticipant(Participant participant) {
+        this.participant = participant;
+    }
+
+    public List<Expense> getExpenses() {
+        return expenses;
+    }
+
+    public void setExpenses(List<Expense> expenses) {
+        this.expenses = expenses;
     }
 }

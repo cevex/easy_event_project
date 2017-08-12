@@ -3,6 +3,7 @@ package com.cevex.easyevent.springmvc.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Participant {
@@ -13,11 +14,12 @@ public class Participant {
 
     private Long id;
 
-    @NotNull
     private Long eventId;
 
     @NotNull
-    private String userName;
+    private String username;
+
+    private List<Contribution> contributionList;
 
     //=========================================================================
     //          Constructor
@@ -26,10 +28,11 @@ public class Participant {
     public Participant() {
     }
 
-    public Participant(Long id, Long eventId, String userName) {
+    public Participant(Long id, Long eventId, String username, List<Contribution> contributionList) {
         this.id = id;
         this.eventId = eventId;
-        this.userName = userName;
+        this.username = username;
+        this.contributionList = contributionList;
     }
 
     //=========================================================================
@@ -52,11 +55,19 @@ public class Participant {
         this.eventId = eventId;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public List<Contribution> getContributionList() {
+        return contributionList;
+    }
+
+    public void setContributionList(List<Contribution> contributionList) {
+        this.contributionList = contributionList;
     }
 }
