@@ -1,7 +1,7 @@
 package com.cevex.easyevent.springmvc.common;
 
 
-import com.cevex.easyevent.springmvc.error.exception.WrongParameterException;
+import com.cevex.easyevent.springmvc.common.error.exception.WrongParameterException;
 import org.springframework.validation.BindingResult;
 
 public class RestControllerValidator {

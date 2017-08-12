@@ -1,4 +1,4 @@
-package com.cevex.easyevent.springmvc.error.validation;
+package com.cevex.easyevent.springmvc.common.error.validation;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;

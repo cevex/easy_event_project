@@ -1,11 +1,11 @@
 package com.cevex.easyevent.springmvc.controller.error;
 
-import com.cevex.easyevent.springmvc.error.exception.AlreadyExistsException;
-import com.cevex.easyevent.springmvc.error.exception.NotFoundException;
-import com.cevex.easyevent.springmvc.error.exception.WrongParameterException;
-import com.cevex.easyevent.springmvc.error.model.ErrorCause;
-import com.cevex.easyevent.springmvc.error.model.ErrorMessage;
-import com.cevex.easyevent.springmvc.error.model.ValidationErrorCause;
+import com.cevex.easyevent.springmvc.common.error.exception.AlreadyExistsException;
+import com.cevex.easyevent.springmvc.common.error.exception.NotFoundException;
+import com.cevex.easyevent.springmvc.common.error.exception.WrongParameterException;
+import com.cevex.easyevent.springmvc.common.error.model.ErrorCause;
+import com.cevex.easyevent.springmvc.common.error.model.ErrorMessage;
+import com.cevex.easyevent.springmvc.common.error.model.ValidationErrorCause;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

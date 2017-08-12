@@ -1,10 +1,6 @@
-package com.cevex.easyevent.springmvc.error.exception;
+package com.cevex.easyevent.springmvc.common.error.exception;
 
-import com.cevex.easyevent.springmvc.error.model.ValidationErrorCause;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
-
-import java.util.List;
 
 public class WrongParameterException extends RuntimeException {
 

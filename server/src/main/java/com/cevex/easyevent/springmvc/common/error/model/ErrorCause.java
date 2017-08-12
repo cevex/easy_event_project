@@ -1,4 +1,4 @@
-package com.cevex.easyevent.springmvc.error.model;
+package com.cevex.easyevent.springmvc.common.error.model;
 
 public class ErrorCause {
     private String message;

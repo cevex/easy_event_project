@@ -2,8 +2,8 @@ package com.cevex.easyevent.springmvc.service;
 
 import com.cevex.easyevent.springmvc.dao.ContributionDao;
 import com.cevex.easyevent.springmvc.dao.entity.ContributionEntity;
-import com.cevex.easyevent.springmvc.error.exception.AlreadyExistsException;
-import com.cevex.easyevent.springmvc.error.exception.NotFoundException;
+import com.cevex.easyevent.springmvc.common.error.exception.AlreadyExistsException;
+import com.cevex.easyevent.springmvc.common.error.exception.NotFoundException;
 import com.cevex.easyevent.springmvc.mapper.ContributionMapper;
 import com.cevex.easyevent.springmvc.model.Contribution;
 import org.springframework.beans.factory.annotation.Autowired;

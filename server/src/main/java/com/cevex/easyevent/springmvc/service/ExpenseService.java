@@ -2,8 +2,8 @@ package com.cevex.easyevent.springmvc.service;
 
 import com.cevex.easyevent.springmvc.dao.ExpenseDao;
 import com.cevex.easyevent.springmvc.dao.entity.ExpenseEntity;
-import com.cevex.easyevent.springmvc.error.exception.AlreadyExistsException;
-import com.cevex.easyevent.springmvc.error.exception.NotFoundException;
+import com.cevex.easyevent.springmvc.common.error.exception.AlreadyExistsException;
+import com.cevex.easyevent.springmvc.common.error.exception.NotFoundException;
 import com.cevex.easyevent.springmvc.mapper.ExpenseMapper;
 import com.cevex.easyevent.springmvc.model.Expense;
 import org.springframework.beans.factory.annotation.Autowired;
