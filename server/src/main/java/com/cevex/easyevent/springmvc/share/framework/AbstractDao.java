@@ -1,6 +1,8 @@
 package com.cevex.easyevent.springmvc.share.framework;
 
+import com.cevex.easyevent.springmvc.share.framework.utils.GenericClassUtils;
 import org.hibernate.Criteria;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +10,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
-import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 @Transactional
@@ -33,16 +34,13 @@ public abstract class AbstractDao<PK extends Serializable, ENTITY> {
      */
     @SuppressWarnings("unchecked")
     public AbstractDao() {
-        this.persistentClass = (Class<ENTITY>) ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[1];
+        this.persistentClass = (Class<ENTITY>) GenericClassUtils.getParameterClass(this.getClass(), 1);
     }
 
     //=========================================================================
     //          Action
     //=========================================================================
 
-    /**
-     * Find all the entries
-     */
     @SuppressWarnings("unchecked")
     public List<ENTITY> findAll() {
         Criteria criteria = createEntityCriteria();
@@ -50,7 +48,7 @@ public abstract class AbstractDao<PK extends Serializable, ENTITY> {
     }
 
     /**
-     * Find an entry with unique identifier
+     * Find an entry with is unique identifier.
      */
     @SuppressWarnings("unchecked")
     public ENTITY find(PK key) {
@@ -74,6 +72,12 @@ public abstract class AbstractDao<PK extends Serializable, ENTITY> {
     //=========================================================================
     //          Technical
     //=========================================================================
+
+    protected SQLQuery buildQuery(String request) {
+        return getSession()
+                .createSQLQuery(request)
+                .addEntity(persistentClass.getCanonicalName());
+    }
 
     protected Session getSession() {
         return sessionFactory.getCurrentSession();

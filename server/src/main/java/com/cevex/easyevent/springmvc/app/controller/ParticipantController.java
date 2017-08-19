@@ -9,35 +9,53 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.util.List;
 
-@org.springframework.web.bind.annotation.RestController
-@RequestMapping(value = "")
+@RestController
+@RequestMapping(value = "/events/{event_id}")
 public class ParticipantController extends RestControllerValidator {
 
     @Autowired
     private ParticipantService participantService;
 
     //=============================================================================================
-    //                          Retrieve All Participant
+    //                          Retrieve List of Participant
     //=============================================================================================
 
     @RequestMapping(
             value = "/participants", method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE
     )
-    public ResponseEntity<List<Participant>> getAllParticipants() {
-        List<Participant> participants = participantService.getAll();
+    public ResponseEntity<List<Participant>> getParticipantList(@PathVariable("event_id") long eventId) {
+
+        System.out.println("Fetching Participant => [event:" + eventId + "]");
+
+        List<Participant> participants = participantService.getParticipantList(eventId);
         if (participants.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
+
+        return new ResponseEntity<>(participants, HttpStatus.OK);
+    }
+
+
+    @RequestMapping(
+            value = "/expenses/{expense_id}/participants", method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_UTF8_VALUE
+    )
+    public ResponseEntity<List<Participant>> getParticipantListOfExpense(@PathVariable("event_id") long eventId,
+                                                                         @PathVariable("expense_id") long expenseId) {
+        System.out.println("Fetching Participant => [event:" + eventId + "; expense:" + expenseId + "]");
+
+        List<Participant> participants = participantService.getParticipantListOfExpense(eventId, expenseId);
+        if (participants.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+
         return new ResponseEntity<>(participants, HttpStatus.OK);
     }
 
@@ -46,12 +64,13 @@ public class ParticipantController extends RestControllerValidator {
     //=============================================================================================
 
     @RequestMapping(
-            value = "/participants/{participant_id}", method = RequestMethod.GET,
+            value = "/participants/{participant_username}", method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE
     )
-    public ResponseEntity<Participant> getParticipant(@PathVariable("participant_id") long id) {
-        System.out.println("Fetching Participant with id " + id);
-        Participant participant = participantService.get(id);
+    public ResponseEntity<Participant> getParticipant(@PathVariable("event_id") long eventId,
+                                                      @PathVariable("participant_username") String username) {
+        System.out.println("Fetching Participant with id => [event:" + eventId + "; participant:" + username + "]");
+        Participant participant = participantService.getParticipant(eventId, username);
         return new ResponseEntity<>(participant, HttpStatus.OK);
     }
 
@@ -64,12 +83,13 @@ public class ParticipantController extends RestControllerValidator {
             consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE
     )
-    public ResponseEntity<Void> createParticipant(@RequestBody @Valid Participant participant, BindingResult bindingResult, UriComponentsBuilder ucBuilder) {
-        System.out.println("Creating Participant " + participant.getId());
+    public ResponseEntity<Void> createParticipant(@PathVariable("event_id") long eventId,
+                                                  @RequestBody @Valid Participant participant,
+                                                  BindingResult bindingResult, UriComponentsBuilder ucBuilder) {
+        System.out.println("Creating Participant => [event:" + eventId + "]");
 
         validateResource(bindingResult);
-
-        participantService.createParticipant(participant);
+        participantService.createParticipant(eventId, participant);
 
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(ucBuilder.path("/participants/{id}").buildAndExpand(participant.getId()).toUri());
@@ -82,14 +102,19 @@ public class ParticipantController extends RestControllerValidator {
     //=============================================================================================
 
     @RequestMapping(
-            value = "/participants/{participant_id}", method = RequestMethod.PUT,
+            value = "/participants/{username}", method = RequestMethod.PUT,
             consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE
     )
-    public ResponseEntity<Participant> updateParticipant(@PathVariable("participant_id") long id, @RequestBody @Valid Participant participant, BindingResult bindingResult) {
-        System.out.println("Updating Participant " + id);
+    public ResponseEntity<Participant> updateParticipant(@PathVariable("event_id") long eventId,
+                                                         @PathVariable("username") String username,
+                                                         @RequestBody @Valid Participant participant,
+                                                         BindingResult bindingResult) {
+
+        System.out.println("Updating Participant with id => [event:" + eventId + "; participant:" + username + "]");
         validateResource(bindingResult);
-        Participant updatedParticipant = participantService.update(id, participant);
+        Participant updatedParticipant = participantService.updateParticipant(eventId, username, participant);
+
         return new ResponseEntity<>(updatedParticipant, HttpStatus.OK);
     }
 
@@ -101,9 +126,10 @@ public class ParticipantController extends RestControllerValidator {
             value = "/participants/{participant_id}", method = RequestMethod.DELETE,
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE
     )
-    public ResponseEntity<Void> deleteParticipant(@PathVariable("participant_id") long id) {
-        System.out.println("Fetching & Deleting Participant with id " + id);
-        participantService.delete(id);
+    public ResponseEntity<Void> deleteParticipant(@PathVariable("event_id") long eventId,
+                                                  @PathVariable("username") String username) {
+        System.out.println("Fetching & Deleting Participant with id => [event:" + eventId + "; participant:" + username + "]");
+        participantService.deleteParticipant(eventId, username);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

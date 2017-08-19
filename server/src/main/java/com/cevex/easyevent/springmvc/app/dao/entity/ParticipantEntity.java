@@ -22,6 +22,10 @@ public class ParticipantEntity implements Serializable {
     @Column(name = "participant_user_name")
     private String username;
 
+//    @OneToMany
+//    @JoinColumn(name = "contribution_participant_id")
+//    private Collection<ContributionEntity> contributionList = new ArrayList<>();
+
     //=========================================================================
     //          Getter/Setter
     //=========================================================================
@@ -49,4 +53,12 @@ public class ParticipantEntity implements Serializable {
     public void setUsername(String username) {
         this.username = username;
     }
+
+//    public Collection<ContributionEntity> getContributionList() {
+//        return contributionList;
+//    }
+//
+//    public void setContributionList(Collection<ContributionEntity> contributionList) {
+//        this.contributionList = contributionList;
+//    }
 }

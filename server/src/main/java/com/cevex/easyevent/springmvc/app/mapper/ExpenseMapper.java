@@ -10,9 +10,8 @@ import org.springframework.stereotype.Service;
 public class ExpenseMapper extends AbstractMapper<Expense, ExpenseEntity> {
 
     //=========================================================================
-    //          DAO -> Model
+    //          DAO -> ModelElement
     //=========================================================================
-
 
     @Override
     public Expense mapToModel(ExpenseEntity entity) {
@@ -27,7 +26,7 @@ public class ExpenseMapper extends AbstractMapper<Expense, ExpenseEntity> {
     }
 
     //=========================================================================
-    //          Model -> DAO
+    //          ModelElement -> DAO
     //=========================================================================
 
     @Override

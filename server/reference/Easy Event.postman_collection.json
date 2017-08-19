@@ -1,0 +1,459 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Easy Event",
+		"_postman_id": "42a1fee7-9671-8452-0fee-faae46fb46dd",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Welcome",
+			"description": "",
+			"item": [
+				{
+					"name": "Welcome",
+					"request": {
+						"url": "{{url}}:{{port}}/easyevent-rest-server/",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Welcome Buddy",
+					"request": {
+						"url": "{{url}}:{{port}}/easyevent-rest-server/welcome/Boby",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Event",
+			"description": "",
+			"item": [
+				{
+					"name": "Event List",
+					"request": {
+						"url": "{{url}}:{{port}}/easyevent-rest-server/events",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Event",
+					"request": {
+						"url": "{{url}}:{{port}}/easyevent-rest-server/events/2",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Event",
+					"request": {
+						"url": "{{url}}:{{port}}/easyevent-rest-server/events",
+						"method": "POST",
+						"header": [
+							{
+								"key": "content-type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"NEW_EVENT\",\n  \"place\": \"event place like\",\n  \"start\": \"2016-11-20T08:46:12Z\",\n  \"end\": \"2017-01-09T2:14:58Z\",\n  \"image\": null\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Event",
+					"request": {
+						"url": "{{url}}:{{port}}/easyevent-rest-server/events/5",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"update title\",\n  \"place\": \"update place\",\n  \"start\": \"2016-11-20T18:46:12Z\",\n  \"end\": \"2017-01-09T11:14:58Z\",\n  \"image\": null\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Event",
+					"request": {
+						"url": "{{url}}:{{port}}/easyevent-rest-server/events/5",
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Expense",
+			"description": "",
+			"item": [
+				{
+					"name": "Expense List",
+					"request": {
+						"url": "{{url}}:{{port}}/easyevent-rest-server/events/1/expenses",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Expense",
+					"request": {
+						"url": "{{url}}:{{port}}/easyevent-rest-server/events/1/expenses/3",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Expense",
+					"request": {
+						"url": "{{url}}:{{port}}/easyevent-rest-server/events/1/expenses",
+						"method": "POST",
+						"header": [
+							{
+								"key": "content-type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"eventId\": 1,\n    \"label\": \"New expensive things !!\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Expense",
+					"request": {
+						"url": "{{url}}:{{port}}/easyevent-rest-server/events/1/expenses/4",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"eventId\": 1,\n    \"label\": \"Updated expensive shit !!\",\n    \"date\": \"2017-08-12T15:38:46Z\",\n    \"contributionList\": null\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Expense",
+					"request": {
+						"url": "{{url}}:{{port}}/easyevent-rest-server/events/1/expenses/6",
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Expense List of Participants",
+					"request": {
+						"url": "{{url}}:{{port}}/easyevent-rest-server/events/1/expenses/1/participants",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Participant",
+			"description": "",
+			"item": [
+				{
+					"name": "Participant List of Expense",
+					"request": {
+						"url": "{{url}}:{{port}}/easyevent-rest-server/events/1/participants/1/expenses",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Participant List",
+					"request": {
+						"url": "{{url}}:{{port}}/easyevent-rest-server/events/1/participants",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Participant",
+					"request": {
+						"url": "{{url}}:{{port}}/easyevent-rest-server/events/1/participants/Boby",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Participant",
+					"request": {
+						"url": "{{url}}:{{port}}/easyevent-rest-server/events/1/participants",
+						"method": "POST",
+						"header": [
+							{
+								"key": "content-type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"eventId\": 1,\n    \"username\": \"New Friend\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Participant",
+					"request": {
+						"url": "{{url}}:{{port}}/easyevent-rest-server/events/1//participants/4",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"eventId\": 1,\n    \"username\": \"New Friend 2\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Participant",
+					"request": {
+						"url": "{{url}}:{{port}}/easyevent-rest-server//events/1/participants/5",
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"description": "",
+			"item": [
+				{
+					"name": "Get User",
+					"request": {
+						"url": {
+							"raw": "{{url}}:{{port}}/easyevent-rest-server/user/1?access_token=0b4de14f-060b-406c-96c6-051ce8cc75d7",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"easyevent-rest-server",
+								"user",
+								"1"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "0b4de14f-060b-406c-96c6-051ce8cc75d7",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "security",
+			"description": "",
+			"item": [
+				{
+					"name": "Ask Token",
+					"request": {
+						"url": {
+							"raw": "{{url}}:{{port}}/easyevent-rest-server/oauth/token?grant_type=password&username=boby&password=azerty123",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"easyevent-rest-server",
+								"oauth",
+								"token"
+							],
+							"query": [
+								{
+									"key": "grant_type",
+									"value": "password",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "username",
+									"value": "boby",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "password",
+									"value": "azerty123",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic bXktdHJ1c3RlZC1jbGllbnQ6c2VjcmV0",
+								"description": ""
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh Token",
+					"request": {
+						"url": {
+							"raw": "{{url}}:{{port}}/easyevent-rest-server/oauth/token?grant_type=refresh_token&refresh_token=665f18e7-0918-4824-84a5-c5df07966af2",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"easyevent-rest-server",
+								"oauth",
+								"token"
+							],
+							"query": [
+								{
+									"key": "grant_type",
+									"value": "refresh_token",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "refresh_token",
+									"value": "665f18e7-0918-4824-84a5-c5df07966af2",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic bXktdHJ1c3RlZC1jbGllbnQ6c2VjcmV0",
+								"description": ""
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "error",
+			"description": "",
+			"item": []
+		}
+	]
+}

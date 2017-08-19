@@ -6,6 +6,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 
 @Entity
 @Table(name = "t_expense")
@@ -30,6 +32,10 @@ public class ExpenseEntity implements Serializable {
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ssXXX")
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDateTime")
     private LocalDateTime date;
+
+    @OneToMany
+    @JoinColumn(name = "contribution_id")
+    private Collection<ContributionEntity> contributionList = new ArrayList<>();
 
     //=========================================================================
     //          Getter/Setter
@@ -65,5 +71,13 @@ public class ExpenseEntity implements Serializable {
 
     public void setDate(LocalDateTime date) {
         this.date = date;
+    }
+
+    public Collection<ContributionEntity> getContributionList() {
+        return contributionList;
+    }
+
+    public void setContributionList(Collection<ContributionEntity> contributionList) {
+        this.contributionList = contributionList;
     }
 }

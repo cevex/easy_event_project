@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 public class ParticipantMapper extends AbstractMapper<Participant, ParticipantEntity> {
 
     //=========================================================================
-    //          DAO -> Model
+    //          DAO -> ModelElement
     //=========================================================================
 
     @Override
@@ -24,7 +24,7 @@ public class ParticipantMapper extends AbstractMapper<Participant, ParticipantEn
     }
 
     //=========================================================================
-    //          Model -> DAO
+    //          ModelElement -> DAO
     //=========================================================================
 
     @Override

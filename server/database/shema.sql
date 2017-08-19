@@ -16,7 +16,7 @@ CREATE TABLE t_user (
     user_password varchar(60),
     user_name varchar(50),
     user_phone varchar(20),
-    user_wallet money,
+    user_wallet numeric,
     user_image bytea
 );
 
@@ -75,8 +75,9 @@ CREATE TABLE t_expense (
 /*######################################################################################*/
 
 CREATE TABLE t_contribution (
+    contribution_id bigserial CONSTRAINT t_contribution_pk PRIMARY KEY,
     contribution_expense_id bigint references t_expense(expense_id) NOT NULL,
     contribution_participant_id bigint references t_participant(participant_id) NOT NULL,
-    contribution_amount money DEFAULT 0,
-    CONSTRAINT t_contribution_pk PRIMARY KEY (contribution_expense_id, contribution_participant_id)
+    contribution_amount numeric DEFAULT 0,
+    contribution_currency varchar(2) DEFAULT 0
 );

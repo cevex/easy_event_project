@@ -33,21 +33,21 @@ INSERT INTO t_expense (expense_event_id, expense_label, expense_date)
             (1, 'AirBnB NYC', '2017-03-01 20:46:08+01');
 
 /* Car rent */
-INSERT INTO t_contribution (contribution_expense_id, contribution_participant_id, contribution_amount)
-    VALUES  (1, 1, '100€'), /* Boby */
-            (1, 2, '50€'),  /* Joe */
-            (1, 3, '0€');   /* Mel */
+INSERT INTO t_contribution (contribution_expense_id, contribution_participant_id, contribution_amount, contribution_currency)
+    VALUES  (1, 1, 100, '€'), /* Boby */
+            (1, 2, 50, '€'),  /* Joe */
+            (1, 3, 0, '€');   /* Mel */
 
 /* Food */
-INSERT INTO t_contribution (contribution_expense_id, contribution_participant_id, contribution_amount)
-    VALUES  (2, 1, '0€'),   /* Boby */
-            (2, 2, '0€'),   /* Joe */
-            (2, 3, '50€');  /* Mel */
+INSERT INTO t_contribution (contribution_expense_id, contribution_participant_id, contribution_amount, contribution_currency)
+    VALUES  (2, 1, 0, '€'),   /* Boby */
+            (2, 2, 0, '€'),   /* Joe */
+            (2, 3, 50, '€');  /* Mel */
 
 /* AirBnB NYC */
-INSERT INTO t_contribution (contribution_expense_id, contribution_participant_id, contribution_amount)
-    VALUES  (3, 1, '150€'), /* Boby */
-            (3, 2, '50€'),  /* Joe */
-            (3, 3, '100€'); /* Mel */
+INSERT INTO t_contribution (contribution_expense_id, contribution_participant_id, contribution_amount, contribution_currency)
+    VALUES  (3, 1, 150, '€'), /* Boby */
+            (3, 2, 50, '€'),  /* Joe */
+            (3, 3, 100, '€'); /* Mel */
 
 

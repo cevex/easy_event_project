@@ -9,13 +9,14 @@ import org.springframework.stereotype.Service;
 public class ContributionMapper extends AbstractMapper<Contribution, ContributionEntity> {
 
     //=========================================================================
-    //          DAO -> Model
+    //          DAO -> ModelElement
     //=========================================================================
 
     @Override
     public Contribution mapToModel(ContributionEntity entity) {
         Contribution contribution = new Contribution();
 
+        contribution.setId(entity.getId());
         contribution.setAmount(entity.getAmount());
         contribution.setExpenseId(entity.getExpenseId());
         contribution.setParticipantId(entity.getParticipantId());
@@ -24,7 +25,7 @@ public class ContributionMapper extends AbstractMapper<Contribution, Contributio
     }
 
     //=========================================================================
-    //          Model -> DAO
+    //          ModelElement -> DAO
     //=========================================================================
 
     @Override

@@ -1,7 +1,9 @@
 package com.cevex.easyevent.springmvc.app.model;
 
+import com.cevex.easyevent.springmvc.share.framework.model.ModelElement;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import org.joda.time.DateTime;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -9,14 +11,13 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.List;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Expense {
+public class Expense extends ModelElement {
 
     //=========================================================================
     //          Attributes
     //=========================================================================
-
-    private Long id;
 
     @NotNull
     private Long eventId;
@@ -38,7 +39,7 @@ public class Expense {
     }
 
     public Expense(Long id, Long eventId, String label, DateTime date, List<Contribution> contributionList) {
-        this.id = id;
+        super(id);
         this.eventId = eventId;
         this.label = label;
         this.date = date;
@@ -48,14 +49,6 @@ public class Expense {
     //=========================================================================
     //          Getter/Setter
     //=========================================================================
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public Long getEventId() {
         return eventId;

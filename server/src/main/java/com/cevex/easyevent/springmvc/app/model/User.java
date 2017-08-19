@@ -1,17 +1,16 @@
 package com.cevex.easyevent.springmvc.app.model;
 
+import com.cevex.easyevent.springmvc.share.framework.model.ModelElement;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import javax.validation.constraints.Size;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class User {
+public class User extends ModelElement {
 
     //=========================================================================
     //          Attributes
     //=========================================================================
-
-    private Long id;
 
     @Size(min = 3, max = 50)
     private String name;
@@ -34,7 +33,7 @@ public class User {
     }
 
     public User(Long id, String name, String phone, String email, Double money, Byte[] image) {
-        this.id = id;
+        super(id);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -45,14 +44,6 @@ public class User {
     //=========================================================================
     //          Getter/Setter
     //=========================================================================
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;

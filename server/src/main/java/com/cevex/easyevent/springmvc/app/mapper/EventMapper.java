@@ -6,11 +6,13 @@ import com.cevex.easyevent.springmvc.share.framework.AbstractMapper;
 import org.joda.time.LocalDateTime;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 @Service
 public class EventMapper extends AbstractMapper<Event, EventEntity> {
 
     //=========================================================================
-    //          DAO -> Model
+    //          DAO -> ModelElement
     //=========================================================================
 
     @Override
@@ -28,7 +30,7 @@ public class EventMapper extends AbstractMapper<Event, EventEntity> {
     }
 
     //=========================================================================
-    //          Model -> DAO
+    //          ModelElement -> DAO
     //=========================================================================
 
     @Override

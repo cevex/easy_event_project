@@ -1,5 +1,6 @@
 package com.cevex.easyevent.springmvc.app.model;
 
+import com.cevex.easyevent.springmvc.share.framework.model.ModelElement;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -12,13 +13,11 @@ import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Event {
+public class Event extends ModelElement {
 
     //=========================================================================
     //          Attributes
     //=========================================================================
-
-    private Long id;
 
     @NotNull
     @Size(min = 3, max = 50)
@@ -51,7 +50,7 @@ public class Event {
     }
 
     public Event(Long id, String title, String place, DateTime start, DateTime end, Byte[] image, Participant participant, List<Expense> expenses) {
-        this.id = id;
+        super(id);
         this.title = title;
         this.place = place;
         this.start = start;
@@ -64,14 +63,6 @@ public class Event {
     //=========================================================================
     //          Getter/Setter
     //=========================================================================
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getTitle() {
         return title;

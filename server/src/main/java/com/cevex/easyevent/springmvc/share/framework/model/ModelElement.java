@@ -1,37 +1,36 @@
-package com.cevex.easyevent.springmvc.app.model;
+package com.cevex.easyevent.springmvc.share.framework.model;
 
-import com.cevex.easyevent.springmvc.share.framework.model.ModelElement;
-import com.fasterxml.jackson.annotation.JsonInclude;
-
-@JsonInclude(JsonInclude.Include.NON_NULL)
-public class Message extends ModelElement {
+/**
+ * Created by cedric on 12/08/17.
+ */
+public class ModelElement {
 
     //=========================================================================
     //          Attributes
     //=========================================================================
 
-    private String name;
-    private String text;
+    private Long id;
 
     //=========================================================================
     //          Constructor
     //=========================================================================
 
-    public Message(String name, String text) {
-        this.name = name;
-        this.text = text;
+    public ModelElement() {
+    }
+
+    public ModelElement(Long id) {
+        this.id = id;
     }
 
     //=========================================================================
     //          Getter/Setter
     //=========================================================================
 
-    public String getName() {
-        return name;
+    public Long getId() {
+        return id;
     }
 
-    public String getText() {
-        return text;
+    public void setId(Long id) {
+        this.id = id;
     }
-
 }

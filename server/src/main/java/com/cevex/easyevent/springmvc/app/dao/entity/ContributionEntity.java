@@ -5,7 +5,6 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "t_contribution")
-@IdClass(ContributionPK.class)
 public class ContributionEntity implements Serializable {
 
     //=========================================================================
@@ -13,12 +12,15 @@ public class ContributionEntity implements Serializable {
     //=========================================================================
 
     @Id
+    @Column(name = "contribution_id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     @Column(name = "contribution_expense_id", nullable = false)
     private Long expenseId;
 
-    @Id
     @Column(name = "contribution_participant_id", nullable = false)
-    private String participantId;
+    private Long participantId;
 
     @Column(name = "contribution_amount", nullable = false)
     private String amount;
@@ -26,6 +28,14 @@ public class ContributionEntity implements Serializable {
     //=========================================================================
     //          Getter/Setter
     //=========================================================================
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public Long getExpenseId() {
         return expenseId;
@@ -35,11 +45,11 @@ public class ContributionEntity implements Serializable {
         this.expenseId = expenseId;
     }
 
-    public String getParticipantId() {
+    public Long getParticipantId() {
         return participantId;
     }
 
-    public void setParticipantId(String participantId) {
+    public void setParticipantId(Long participantId) {
         this.participantId = participantId;
     }
 

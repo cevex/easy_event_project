@@ -1,21 +1,20 @@
 package com.cevex.easyevent.springmvc.app.model;
 
+import com.cevex.easyevent.springmvc.share.framework.model.ModelElement;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Contribution {
+public class Contribution extends ModelElement {
 
     //=========================================================================
     //          Attributes
     //=========================================================================
 
-    private Long id;
-
     private Long expenseId;
 
-    private String participantId;
+    private Long participantId;
 
     private String amount;
 
@@ -27,8 +26,8 @@ public class Contribution {
 
     }
 
-    public Contribution(Long id, Long expenseId, String participantId, String amount) {
-        this.id = id;
+    public Contribution(Long id, Long expenseId, Long participantId, String amount) {
+        super(id);
         this.expenseId = expenseId;
         this.participantId = participantId;
         this.amount = amount;
@@ -37,14 +36,6 @@ public class Contribution {
     //=========================================================================
     //          Getter/Setter
     //=========================================================================
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getAmount() {
         return amount;
@@ -62,11 +53,11 @@ public class Contribution {
         this.expenseId = expenseId;
     }
 
-    public String getParticipantId() {
+    public Long getParticipantId() {
         return participantId;
     }
 
-    public void setParticipantId(String participantId) {
+    public void setParticipantId(Long participantId) {
         this.participantId = participantId;
     }
 }

@@ -1,29 +1,39 @@
 package com.cevex.easyevent.springmvc.share.framework;
 
+import com.cevex.easyevent.springmvc.share.framework.model.ModelElement;
+import com.cevex.easyevent.springmvc.share.framework.utils.GenericClassUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Generic Mapper holding some classic mapping function.
  *
- * @param <MODEL>  POJO object representing Model Layer
+ * @param <MODEL>  POJO object representing ModelElement Layer
  * @param <ENTITY> POJO object representing Enity Layer
  */
-public abstract class AbstractMapper<MODEL, ENTITY> {
+public abstract class AbstractMapper<MODEL extends ModelElement, ENTITY> {
 
     private Class<ENTITY> entityClass;
 
+    @Autowired
+    @SuppressWarnings("unchecked")
+    public AbstractMapper() {
+        this.entityClass = (Class<ENTITY>) GenericClassUtils.getParameterClass(this.getClass(), 1);
+    }
+
     //=========================================================================
-    //          DAO -> Model
+    //          DAO -> ModelElement
     //=========================================================================
 
     /**
-     * Map a list from Model to Entity
+     * Map a list from ModelElement to Entity
      *
      * @param entityList - List of Entity to map
      * @return List of model
      */
-    protected List<MODEL> mapToModelList(List<ENTITY> entityList) {
+    public List<MODEL> mapToModelList(List<ENTITY> entityList) {
         List<MODEL> modelList = new ArrayList<>();
         for (ENTITY entity : entityList) {
             modelList.add(this.mapToModel(entity));
@@ -32,7 +42,7 @@ public abstract class AbstractMapper<MODEL, ENTITY> {
     }
 
     /**
-     * Map object from Model to Entity
+     * Map object from ModelElement to Entity
      *
      * @param entity - Entity object to map
      * @return A new instance of model object
@@ -40,13 +50,13 @@ public abstract class AbstractMapper<MODEL, ENTITY> {
     public abstract MODEL mapToModel(ENTITY entity);
 
     //=========================================================================
-    //         Model -> Entity
+    //         ModelElement -> Entity
     //=========================================================================
 
     /**
-     * Map object from Entity to Model
+     * Map object from Entity to ModelElement
      *
-     * @param model - Model object to map
+     * @param model - ModelElement object to map
      * @return A new instance of entity object
      */
     public ENTITY mapToEntity(MODEL model) {

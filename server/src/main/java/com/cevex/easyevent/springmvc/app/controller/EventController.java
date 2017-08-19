@@ -9,16 +9,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.util.List;
 
-@org.springframework.web.bind.annotation.RestController
+@RestController
 @RequestMapping(value = "")
 public class EventController extends RestControllerValidator {
 
@@ -34,7 +31,7 @@ public class EventController extends RestControllerValidator {
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE
     )
     public ResponseEntity<List<Event>> getAllEvents() {
-        List<Event> events = eventService.getAll();
+        List<Event> events = eventService.getEventList();
         if (events.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
@@ -52,7 +49,7 @@ public class EventController extends RestControllerValidator {
     public ResponseEntity<Event> getEvent(
             @PathVariable("event_id") long id) {
         System.out.println("Fetching Event with id " + id);
-        Event event = eventService.get(id);
+        Event event = eventService.getEvent(id);
         return new ResponseEntity<>(event, HttpStatus.OK);
     }
 
@@ -90,7 +87,7 @@ public class EventController extends RestControllerValidator {
     public ResponseEntity<Event> updateEvent(@PathVariable("event_id") long id, @RequestBody @Valid Event event, BindingResult bindingResult) {
         System.out.println("Updating Event " + id);
         validateResource(bindingResult);
-        Event updatedEvent = eventService.update(id, event);
+        Event updatedEvent = eventService.updateEvent(id, event);
         return new ResponseEntity<>(updatedEvent, HttpStatus.OK);
     }
 
@@ -104,7 +101,7 @@ public class EventController extends RestControllerValidator {
     )
     public ResponseEntity<Void> deleteEvent(@PathVariable("event_id") long id) {
         System.out.println("Fetching & Deleting Event with id " + id);
-        eventService.delete(id);
+        eventService.deleteEvent(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
