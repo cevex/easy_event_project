@@ -81,7 +81,7 @@ public class EventService {
     private EventEntity getEntity(Long eventId) {
         EventEntity entity = eventDao.find(eventId);
         if (entity == null) {
-            throw new NotFoundException("Event not found");
+            throw new NotFoundException("EventDto not found");
         }
         return entity;
     }

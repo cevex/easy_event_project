@@ -1,14 +1,12 @@
 package com.cevex.easyevent.springmvc.share.framework.error.exception;
 
 /**
- * Created by cedric on 16/05/17.
+ * Notify that asked resource wasn't found.
  */
-public class NotFoundException extends RuntimeException {
-
-    private String message;
+public class NotFoundException extends ResourceException {
 
     public NotFoundException(String message) {
         super(message);
-        this.message = message;
     }
+
 }

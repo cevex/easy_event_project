@@ -5,6 +5,7 @@ import com.cevex.easyevent.springmvc.share.framework.utils.GenericClassUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -33,7 +34,7 @@ public abstract class AbstractMapper<MODEL extends ModelElement, ENTITY> {
      * @param entityList - List of Entity to map
      * @return List of model
      */
-    public List<MODEL> mapToModelList(List<ENTITY> entityList) {
+    public List<MODEL> mapToModelList(Collection<ENTITY> entityList) {
         List<MODEL> modelList = new ArrayList<>();
         for (ENTITY entity : entityList) {
             modelList.add(this.mapToModel(entity));
@@ -52,6 +53,20 @@ public abstract class AbstractMapper<MODEL extends ModelElement, ENTITY> {
     //=========================================================================
     //         ModelElement -> Entity
     //=========================================================================
+
+    /**
+     * Map a list from ModelElement to Entity
+     *
+     * @param modelList - List of model object to map
+     * @return List of model
+     */
+    public Collection<ENTITY> mapToEntityList(Collection<MODEL> modelList) {
+        Collection<ENTITY> entityList = new ArrayList<>();
+        for (MODEL model : modelList) {
+            entityList.add(this.mapToEntity(model));
+        }
+        return entityList;
+    }
 
     /**
      * Map object from Entity to ModelElement

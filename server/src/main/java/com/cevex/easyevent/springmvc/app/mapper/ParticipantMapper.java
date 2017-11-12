@@ -17,7 +17,6 @@ public class ParticipantMapper extends AbstractMapper<Participant, ParticipantEn
         Participant participant = new Participant();
 
         participant.setId(entity.getId());
-        participant.setEventId(entity.getEventId());
         participant.setUsername(entity.getUsername());
 
         return participant;
@@ -29,7 +28,6 @@ public class ParticipantMapper extends AbstractMapper<Participant, ParticipantEn
 
     @Override
     public void updateEntity(ParticipantEntity entity, Participant model) {
-        entity.setEventId(model.getEventId());
         entity.setUsername(model.getUsername());
 
     }

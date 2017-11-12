@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class WelcomeController {
 
-    private final String WELCOME = "Welcome to the Easy Event Project.";
+    private final String WELCOME = "Welcome to the Easy EventDto Project.";
 
     @RequestMapping("/")
     public String welcome() {

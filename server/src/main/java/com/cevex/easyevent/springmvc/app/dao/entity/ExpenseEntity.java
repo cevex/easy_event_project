@@ -8,6 +8,8 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "t_expense")
@@ -18,7 +20,7 @@ public class ExpenseEntity implements Serializable {
     //=========================================================================
 
     @Id
-    @Column(name = "expense_id", nullable = false)
+    @Column(name = "expense_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -32,10 +34,6 @@ public class ExpenseEntity implements Serializable {
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ssXXX")
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDateTime")
     private LocalDateTime date;
-
-    @OneToMany
-    @JoinColumn(name = "contribution_id")
-    private Collection<ContributionEntity> contributionList = new ArrayList<>();
 
     //=========================================================================
     //          Getter/Setter
@@ -73,11 +71,4 @@ public class ExpenseEntity implements Serializable {
         this.date = date;
     }
 
-    public Collection<ContributionEntity> getContributionList() {
-        return contributionList;
-    }
-
-    public void setContributionList(Collection<ContributionEntity> contributionList) {
-        this.contributionList = contributionList;
-    }
 }

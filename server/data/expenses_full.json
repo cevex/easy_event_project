@@ -1,0 +1,83 @@
+[
+  {
+    "id": 1,
+    "label": "Car rent",
+    "date": "2017-01-01T09:23:54Z",
+    "contributions": [
+      {
+        "id": 1,
+        "participant": {
+          "id": 1,
+          "username" : "Boby"
+        },
+        "amount": "100"
+      },
+      {
+        "id": 2,
+        "participant": {
+          "id": 2,
+          "username" : "Joe"
+        },
+        "amount": "50"
+      },
+      {
+        "id": 3,
+        "participant": {
+          "id": 3,
+          "username" : "Mel"
+        },
+        "amount": "0"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "label": "Food",
+    "date": "2017-05-01T11:23:45Z",
+    "contributions": [
+      {
+        "id": 4,
+        "participant": {
+          "id": 1,
+          "username" : "Boby"
+        },
+        "amount": "0"
+      },
+      {
+        "id": 5,
+        "participant": "Joe",
+        "amount": "0"
+      },
+      {
+        "id": 6,
+        "participant": "Mel",
+        "amount": "50"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "label": "AirBnB NYC",
+    "date": "2017-03-01T19:46:08Z",
+    "contributions": [
+      {
+        "id": 7,
+        "participant": {
+          "id": 1,
+          "username" : "Boby"
+        },
+        "amount": "150"
+      },
+      {
+        "id": 8,
+        "participant": "Joe",
+        "amount": "50"
+      },
+      {
+        "id": 9,
+        "participant": "Mel",
+        "amount": "100"
+      }
+    ]
+  }
+]

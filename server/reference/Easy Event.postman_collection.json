@@ -36,266 +36,413 @@
 			]
 		},
 		{
-			"name": "Event",
+			"name": "Event API",
 			"description": "",
 			"item": [
 				{
-					"name": "Event List",
-					"request": {
-						"url": "{{url}}:{{port}}/easyevent-rest-server/events",
-						"method": "GET",
-						"header": [],
-						"body": {},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Event",
-					"request": {
-						"url": "{{url}}:{{port}}/easyevent-rest-server/events/2",
-						"method": "GET",
-						"header": [],
-						"body": {},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Event",
-					"request": {
-						"url": "{{url}}:{{port}}/easyevent-rest-server/events",
-						"method": "POST",
-						"header": [
-							{
-								"key": "content-type",
-								"value": "application/json",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"title\": \"NEW_EVENT\",\n  \"place\": \"event place like\",\n  \"start\": \"2016-11-20T08:46:12Z\",\n  \"end\": \"2017-01-09T2:14:58Z\",\n  \"image\": null\n}"
+					"name": "Events",
+					"description": "",
+					"item": [
+						{
+							"name": "Events",
+							"request": {
+								"url": "{{url}}:{{port}}/easyevent-rest-server/events",
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"description": "Retrieve all events"
+							},
+							"response": []
 						},
-						"description": ""
-					},
-					"response": []
+						{
+							"name": "Events",
+							"request": {
+								"url": "{{url}}:{{port}}/easyevent-rest-server/events",
+								"method": "POST",
+								"header": [
+									{
+										"key": "content-type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"title\": \"NEW_EVENT\",\n  \"place\": \"event place like\",\n  \"start\": \"2016-11-20T08:46:12Z\",\n  \"end\": \"2017-01-09T2:14:58Z\",\n  \"image\": null\n}"
+								},
+								"description": "Create an event."
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
 				},
 				{
 					"name": "Event",
-					"request": {
-						"url": "{{url}}:{{port}}/easyevent-rest-server/events/5",
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"title\": \"update title\",\n  \"place\": \"update place\",\n  \"start\": \"2016-11-20T18:46:12Z\",\n  \"end\": \"2017-01-09T11:14:58Z\",\n  \"image\": null\n}"
+					"description": "",
+					"item": [
+						{
+							"name": "Event",
+							"request": {
+								"url": "{{url}}:{{port}}/easyevent-rest-server/events/2",
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"description": "Retrieve a specific event."
+							},
+							"response": []
 						},
-						"description": ""
-					},
-					"response": []
+						{
+							"name": "Event",
+							"request": {
+								"url": "{{url}}:{{port}}/easyevent-rest-server/events/5",
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"title\": \"update title\",\n  \"place\": \"update place\",\n  \"start\": \"2016-11-20T18:46:12Z\",\n  \"end\": \"2017-01-09T11:14:58Z\",\n  \"image\": null\n}"
+								},
+								"description": "Update a specific event."
+							},
+							"response": []
+						},
+						{
+							"name": "Event",
+							"request": {
+								"url": "{{url}}:{{port}}/easyevent-rest-server/events/5",
+								"method": "DELETE",
+								"header": [],
+								"body": {},
+								"description": "Delete a specific event."
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
 				},
 				{
-					"name": "Event",
-					"request": {
-						"url": "{{url}}:{{port}}/easyevent-rest-server/events/5",
-						"method": "DELETE",
-						"header": [],
-						"body": {},
-						"description": ""
-					},
-					"response": []
+					"name": "Event Expenses",
+					"description": "",
+					"item": [
+						{
+							"name": "Event Expenses",
+							"request": {
+								"url": "{{url}}:{{port}}/easyevent-rest-server/events/1/expenses",
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"description": "Get the expenses of an event."
+							},
+							"response": []
+						},
+						{
+							"name": "Events Expense",
+							"request": {
+								"url": "{{url}}:{{port}}/easyevent-rest-server/events/1/expenses",
+								"method": "POST",
+								"header": [
+									{
+										"key": "content-type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"label\": \"New expense !!\",\n    \"date\": \"2017-08-12T15:38:46Z\"\n}"
+								},
+								"description": "Create an expense for an event."
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Event Participants",
+					"description": "",
+					"item": [
+						{
+							"name": "Event Participant",
+							"request": {
+								"url": "{{url}}:{{port}}/easyevent-rest-server/events/1/participants",
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"description": "Get the participants of an event."
+							},
+							"response": []
+						},
+						{
+							"name": "Events Participant",
+							"request": {
+								"url": "{{url}}:{{port}}/easyevent-rest-server/events/1/participants",
+								"method": "POST",
+								"header": [
+									{
+										"key": "content-type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"New Friend\"\n}"
+								},
+								"description": "Create a participant for an event."
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
 				}
 			]
 		},
 		{
-			"name": "Expense",
+			"name": "Expense API",
 			"description": "",
 			"item": [
 				{
-					"name": "Expense List",
-					"request": {
-						"url": "{{url}}:{{port}}/easyevent-rest-server/events/1/expenses",
-						"method": "GET",
-						"header": [],
-						"body": {},
-						"description": ""
-					},
-					"response": []
-				},
-				{
 					"name": "Expense",
-					"request": {
-						"url": "{{url}}:{{port}}/easyevent-rest-server/events/1/expenses/3",
-						"method": "GET",
-						"header": [],
-						"body": {},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Expense",
-					"request": {
-						"url": "{{url}}:{{port}}/easyevent-rest-server/events/1/expenses",
-						"method": "POST",
-						"header": [
-							{
-								"key": "content-type",
-								"value": "application/json",
+					"description": "",
+					"item": [
+						{
+							"name": "Expense",
+							"request": {
+								"url": "{{url}}:{{port}}/easyevent-rest-server/expenses/1",
+								"method": "GET",
+								"header": [],
+								"body": {},
 								"description": ""
 							},
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"eventId\": 1,\n    \"label\": \"New expensive things !!\"\n}"
+							"response": []
 						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Expense",
-					"request": {
-						"url": "{{url}}:{{port}}/easyevent-rest-server/events/1/expenses/4",
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
+						{
+							"name": "Expense",
+							"request": {
+								"url": "{{url}}:{{port}}/easyevent-rest-server/expenses/5",
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"eventId\": 1,\n    \"label\": \"Updated expensive shit !!\",\n    \"date\": \"2017-08-12T15:38:46Z\"\n}"
+								},
 								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"eventId\": 1,\n    \"label\": \"Updated expensive shit !!\",\n    \"date\": \"2017-08-12T15:38:46Z\",\n    \"contributionList\": null\n}"
+							},
+							"response": []
 						},
-						"description": ""
-					},
-					"response": []
+						{
+							"name": "Expense",
+							"request": {
+								"url": "{{url}}:{{port}}/easyevent-rest-server/expenses/4",
+								"method": "DELETE",
+								"header": [],
+								"body": {},
+								"description": ""
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
 				},
 				{
-					"name": "Expense",
-					"request": {
-						"url": "{{url}}:{{port}}/easyevent-rest-server/events/1/expenses/6",
-						"method": "DELETE",
-						"header": [],
-						"body": {},
-						"description": ""
-					},
-					"response": []
+					"name": "Expense Full",
+					"description": "",
+					"item": [
+						{
+							"name": "Expense Full",
+							"request": {
+								"url": {
+									"raw": "{{url}}:{{port}}/easyevent-rest-server/expenses/3?full=true",
+									"host": [
+										"{{url}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"easyevent-rest-server",
+										"expenses",
+										"3"
+									],
+									"query": [
+										{
+											"key": "full",
+											"value": "true",
+											"equals": true,
+											"description": ""
+										}
+									],
+									"variable": []
+								},
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "Expense Full",
+							"request": {
+								"url": "{{url}}:{{port}}/easyevent-rest-server/expenses/1",
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": 1,\n    \"label\": \"New Expenses\",\n    \"date\": \"2017-01-01T09:23:54Z\",\n    \"contributions\": [\n      {\n        \"participant\": 1,\n        \"amount\": \"100\"\n      },\n      {\n        \"participant\": 2,\n        \"amount\": \"50\"\n      },\n      {\n        \"participant\": 3,\n        \"amount\": \"0\"\n      }\n    ]\n  }"
+								},
+								"description": ""
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
 				},
 				{
-					"name": "Expense List of Participants",
-					"request": {
-						"url": "{{url}}:{{port}}/easyevent-rest-server/events/1/expenses/1/participants",
-						"method": "GET",
-						"header": [],
-						"body": {},
-						"description": ""
-					},
-					"response": []
+					"name": "Expense Contributions",
+					"description": "",
+					"item": [
+						{
+							"name": "Expense Contributions",
+							"request": {
+								"url": "{{url}}:{{port}}/easyevent-rest-server/expenses/1/contributions",
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"description": ""
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
 				}
 			]
 		},
 		{
-			"name": "Participant",
+			"name": "Participant API",
 			"description": "",
 			"item": [
 				{
-					"name": "Participant List of Expense",
-					"request": {
-						"url": "{{url}}:{{port}}/easyevent-rest-server/events/1/participants/1/expenses",
-						"method": "GET",
-						"header": [],
-						"body": {},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Participant List",
-					"request": {
-						"url": "{{url}}:{{port}}/easyevent-rest-server/events/1/participants",
-						"method": "GET",
-						"header": [],
-						"body": {},
-						"description": ""
-					},
-					"response": []
-				},
-				{
 					"name": "Participant",
-					"request": {
-						"url": "{{url}}:{{port}}/easyevent-rest-server/events/1/participants/Boby",
-						"method": "GET",
-						"header": [],
-						"body": {},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Participant",
-					"request": {
-						"url": "{{url}}:{{port}}/easyevent-rest-server/events/1/participants",
-						"method": "POST",
-						"header": [
-							{
-								"key": "content-type",
-								"value": "application/json",
+					"description": "",
+					"item": [
+						{
+							"name": "Participant",
+							"request": {
+								"url": "{{url}}:{{port}}/easyevent-rest-server/participants/4",
+								"method": "GET",
+								"header": [],
+								"body": {},
 								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"eventId\": 1,\n    \"username\": \"New Friend\"\n}"
+							},
+							"response": []
 						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Participant",
-					"request": {
-						"url": "{{url}}:{{port}}/easyevent-rest-server/events/1//participants/4",
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
+						{
+							"name": "Participant",
+							"request": {
+								"url": "{{url}}:{{port}}/easyevent-rest-server/participants/5",
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"eventId\": 1,\n    \"username\": \"Updated Friend\"\n}"
+								},
 								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"eventId\": 1,\n    \"username\": \"New Friend 2\"\n}"
+							},
+							"response": []
 						},
-						"description": ""
-					},
-					"response": []
+						{
+							"name": "Participant",
+							"request": {
+								"url": "{{url}}:{{port}}/easyevent-rest-server/participants/5",
+								"method": "DELETE",
+								"header": [],
+								"body": {},
+								"description": ""
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
 				},
 				{
-					"name": "Participant",
-					"request": {
-						"url": "{{url}}:{{port}}/easyevent-rest-server//events/1/participants/5",
-						"method": "DELETE",
-						"header": [],
-						"body": {},
-						"description": ""
-					},
-					"response": []
+					"name": "Participant Full",
+					"description": "",
+					"item": [
+						{
+							"name": "Participant Full",
+							"request": {
+								"url": {
+									"raw": "{{url}}:{{port}}/easyevent-rest-server/participants/1?full=true",
+									"host": [
+										"{{url}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"easyevent-rest-server",
+										"participants",
+										"1"
+									],
+									"query": [
+										{
+											"key": "full",
+											"value": "true",
+											"equals": true,
+											"description": ""
+										}
+									],
+									"variable": []
+								},
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"description": ""
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Paticipant Contributions",
+					"description": "",
+					"item": [
+						{
+							"name": "Participant Contributions",
+							"request": {
+								"url": "{{url}}:{{port}}/easyevent-rest-server/participants/1/contributions",
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"description": ""
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
 				}
 			]
 		},

@@ -15,12 +15,8 @@ public class Participant extends ModelElement {
     //          Attributes
     //=========================================================================
 
-    private Long eventId;
-
     @NotNull
     private String username;
-
-    private List<Contribution> contributionList;
 
     //=========================================================================
     //          Constructor
@@ -29,24 +25,14 @@ public class Participant extends ModelElement {
     public Participant() {
     }
 
-    public Participant(Long id, Long eventId, String username, List<Contribution> contributionList) {
+    public Participant(Long id, String username) {
         super(id);
-        this.eventId = eventId;
         this.username = username;
-        this.contributionList = contributionList;
     }
 
     //=========================================================================
     //          Getter/Setter
     //=========================================================================
-
-    public Long getEventId() {
-        return eventId;
-    }
-
-    public void setEventId(Long eventId) {
-        this.eventId = eventId;
-    }
 
     public String getUsername() {
         return username;
@@ -56,11 +42,4 @@ public class Participant extends ModelElement {
         this.username = username;
     }
 
-    public List<Contribution> getContributionList() {
-        return contributionList;
-    }
-
-    public void setContributionList(List<Contribution> contributionList) {
-        this.contributionList = contributionList;
-    }
 }

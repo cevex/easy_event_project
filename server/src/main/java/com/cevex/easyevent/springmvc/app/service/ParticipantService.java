@@ -5,9 +5,11 @@ import com.cevex.easyevent.springmvc.app.dao.entity.ParticipantEntity;
 import com.cevex.easyevent.springmvc.app.mapper.ParticipantMapper;
 import com.cevex.easyevent.springmvc.app.model.Participant;
 import com.cevex.easyevent.springmvc.share.framework.error.exception.AlreadyExistsException;
+import com.cevex.easyevent.springmvc.share.framework.error.exception.EmptyException;
 import com.cevex.easyevent.springmvc.share.framework.error.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -45,41 +47,11 @@ public class ParticipantService {
      * @return The participants List if found, null otherwise
      */
     public List<Participant> getParticipantList(Long eventId) {
-        List<ParticipantEntity> entityList = this.findEntityList(eventId, null);
-        return participantMapper.mapToModelList(entityList);
-    }
-
-    /**
-     * Retrieve an element by identifier
-     *
-     * @return All the Element
-     */
-    public List<Participant> getParticipantListOfExpense(Long eventId, Long expenseId) {
-        List<ParticipantEntity> entityList = this.findEntityList(eventId, expenseId);
-        return participantMapper.mapToModelList(entityList);
-    }
-
-    /**
-     * Retrieve a participant by name.
-     *
-     * @param eventId   - Search in this event.
-     * @param expenseId - Find participants for this expense. (OPTIONAL)
-     * @return The entity if found
-     * @throws NotFoundException - If not found
-     */
-    private List<ParticipantEntity> findEntityList(Long eventId, Long expenseId) {
-        List<ParticipantEntity> entityList = expenseId == null ?
-                participantDao.findParticipantList(eventId) :
-                participantDao.findParticipantListOfExpense(eventId, expenseId);
-        validateEntityList(entityList);
-        return entityList;
-    }
-
-
-    private void validateEntityList(List<ParticipantEntity> entityList) {
+        List<ParticipantEntity> entityList = participantDao.findList(eventId);
         if (entityList == null || entityList.size() <= 0) {
-            throw new NotFoundException("Participant List not found");
+            throw new EmptyException("No participants for [eventId= " + eventId + "]");
         }
+        return participantMapper.mapToModelList(entityList);
     }
 
     //=========================================================================
@@ -87,29 +59,38 @@ public class ParticipantService {
     //=========================================================================
 
     /**
-     * Retrieve a Participant by username and event.
+     * Retrieve a ParticipantFull by username and event.
      *
-     * @param eventId  - Search in this event.
-     * @param username - The participants to retrieve.
+     * @param participantId - The participants to retrieve.
      * @return The participant if found
      */
-    public Participant getParticipant(Long eventId, String username) {
-        ParticipantEntity entity = findEntity(eventId, username);
+    public Participant getParticipant(Long participantId) {
+        ParticipantEntity entity = participantDao.find(participantId);
         return participantMapper.mapToModel(entity);
+    }
+
+    /**
+     * Retrieve a ParticipantFull by username and event.
+     *
+     * @param participantId - The participants to retrieve.
+     * @return The participant if found
+     */
+    public Participant getFullParticipant(Long participantId) {
+        //TODO : Implement service getFullParticipant
+        throw new NotImplementedException();
     }
 
     /**
      * Find a participant entity by name
      *
-     * @param eventId  - Search in this event.
-     * @param username - Name of the participant to find
+     * @param participantId - Identifiers of the participant to find
      * @return The entity if found
      * @throws NotFoundException - If not found
      */
-    private ParticipantEntity findEntity(Long eventId, String username) {
-        ParticipantEntity entity = participantDao.findParticipant(eventId, username);
+    private ParticipantEntity findEntity(Long participantId) {
+        ParticipantEntity entity = participantDao.find(participantId);
         if (entity == null) {
-            throw new NotFoundException("Participant not found");
+            throw new NotFoundException("ParticipantFull not found");
         }
         return entity;
     }
@@ -127,7 +108,9 @@ public class ParticipantService {
      */
     public void createParticipant(Long eventId, Participant participant) {
         if (!this.isExist(eventId, participant.getUsername())) {
-            participantDao.save(participantMapper.mapToEntity(participant));
+            ParticipantEntity entity = participantMapper.mapToEntity(participant);
+            entity.setEventId(eventId);
+            participantDao.save(entity);
         } else {
             throw new AlreadyExistsException("Participant with name '" + participant.getUsername() + "' already exist");
         }
@@ -140,14 +123,13 @@ public class ParticipantService {
     /**
      * Update an existing element
      *
-     * @param eventId     - Identifiers of the element to check
-     * @param username    - Name of the participant to find
-     * @param participant - The participant to save
+     * @param participantId - Identifiers of the participant to update
+     * @param participant   - The participant to save
      * @return The updated participant.
      * @throws NotFoundException - If not found
      */
-    public Participant updateParticipant(Long eventId, String username, Participant participant) {
-        ParticipantEntity entity = this.findEntity(eventId, username);
+    public Participant updateParticipant(Long participantId, Participant participant) {
+        ParticipantEntity entity = this.findEntity(participantId);
         participantMapper.updateEntity(entity, participant);
         return participant;
     }
@@ -159,12 +141,11 @@ public class ParticipantService {
     /**
      * Delete an existing element
      *
-     * @param eventId  - Identifiers of the event to search in
-     * @param username - Name of the participant to delete
+     * @param participantId - Identifiers of the participant to delete
      * @throws NotFoundException - If not found
      */
-    public void deleteParticipant(Long eventId, String username) {
-        ParticipantEntity entity = this.findEntity(eventId, username);
+    public void deleteParticipant(Long participantId) {
+        ParticipantEntity entity = this.findEntity(participantId);
         participantDao.delete(entity);
     }
 
@@ -181,7 +162,7 @@ public class ParticipantService {
      * @throws NotFoundException - If not found
      */
     private boolean isExist(Long eventId, String username) {
-        return this.findEntity(eventId, username) != null;
+        return participantDao.findParticipant(eventId, username) != null;
     }
 
 }

@@ -2,33 +2,24 @@ package com.cevex.easyevent.springmvc.share.framework.error.exception;
 
 import org.springframework.validation.BindingResult;
 
-public class WrongParameterException extends RuntimeException {
-
-    private String message;
+/**
+ * Notify that necessary parameter to access resource wasn't valid.
+ */
+public class WrongParameterException extends ResourceException {
 
     private BindingResult bindingResult;
 
     public WrongParameterException(String message) {
         super(message);
-        this.message = message;
     }
 
     public WrongParameterException(String message, BindingResult bindingResult) {
-        this.message = message;
+        super(message);
         this.bindingResult = bindingResult;
     }
 
     public WrongParameterException(BindingResult bindingResult) {
         this.bindingResult = bindingResult;
-    }
-
-    @Override
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
     }
 
     public void setBindingResult(BindingResult bindingResult) {

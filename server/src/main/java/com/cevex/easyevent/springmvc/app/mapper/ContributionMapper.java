@@ -1,25 +1,22 @@
 package com.cevex.easyevent.springmvc.app.mapper;
 
 import com.cevex.easyevent.springmvc.app.dao.entity.ContributionEntity;
-import com.cevex.easyevent.springmvc.app.model.Contribution;
+import com.cevex.easyevent.springmvc.app.model.ContributionOfExpenses;
 import com.cevex.easyevent.springmvc.share.framework.AbstractMapper;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ContributionMapper extends AbstractMapper<Contribution, ContributionEntity> {
+public class ContributionMapper extends AbstractMapper<ContributionOfExpenses, ContributionEntity> {
 
     //=========================================================================
     //          DAO -> ModelElement
     //=========================================================================
 
-    @Override
-    public Contribution mapToModel(ContributionEntity entity) {
-        Contribution contribution = new Contribution();
+    public ContributionOfExpenses mapToModel(ContributionEntity entity) {
+        ContributionOfExpenses contribution = new ContributionOfExpenses();
 
         contribution.setId(entity.getId());
         contribution.setAmount(entity.getAmount());
-        contribution.setExpenseId(entity.getExpenseId());
-        contribution.setParticipantId(entity.getParticipantId());
 
         return contribution;
     }
@@ -28,8 +25,9 @@ public class ContributionMapper extends AbstractMapper<Contribution, Contributio
     //          ModelElement -> DAO
     //=========================================================================
 
+
     @Override
-    public void updateEntity(ContributionEntity entity, Contribution model) {
+    public void updateEntity(ContributionEntity entity, ContributionOfExpenses model) {
         entity.setAmount(model.getAmount());
     }
 }

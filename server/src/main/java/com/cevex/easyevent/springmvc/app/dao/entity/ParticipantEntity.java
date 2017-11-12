@@ -2,6 +2,8 @@ package com.cevex.easyevent.springmvc.app.dao.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 
 @Entity
 @Table(name = "t_participant")
@@ -21,10 +23,6 @@ public class ParticipantEntity implements Serializable {
 
     @Column(name = "participant_user_name")
     private String username;
-
-//    @OneToMany
-//    @JoinColumn(name = "contribution_participant_id")
-//    private Collection<ContributionEntity> contributionList = new ArrayList<>();
 
     //=========================================================================
     //          Getter/Setter
@@ -54,11 +52,4 @@ public class ParticipantEntity implements Serializable {
         this.username = username;
     }
 
-//    public Collection<ContributionEntity> getContributionList() {
-//        return contributionList;
-//    }
-//
-//    public void setContributionList(Collection<ContributionEntity> contributionList) {
-//        this.contributionList = contributionList;
-//    }
 }

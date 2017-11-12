@@ -1,0 +1,104 @@
+[
+  {
+    "id": 1,
+    "eventId": 1,
+    "username": "Boby",
+    "contributions": [
+      {
+        "id": 1,
+        "expense": {
+          "id": 1,
+          "label": "Car rent",
+          "date": "2017-01-01T09:23:54Z"
+        },
+        "amount": "100"
+      },
+      {
+        "id": 2,
+        "expense": {
+          "id": 4,
+          "label": "Food",
+          "date": "2017-05-01T11:23:45Z"
+        },
+        "amount": "0"
+      },
+      {
+        "id": 3,
+        "expense": {
+          "id": 7,
+          "label": "AirBnB NYC",
+          "date": "2017-03-01T19:46:08Z"
+        },
+        "amount": "150"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "eventId": 1,
+    "username": "Joe",
+    "contributions": [
+      {
+        "id": 1,
+        "expense": {
+          "id": 2,
+          "label": "Car rent",
+          "date": "2017-01-01T09:23:54Z"
+        },
+        "amount": "100"
+      },
+      {
+        "id": 2,
+        "expense": {
+          "id": 5,
+          "label": "Food",
+          "date": "2017-05-01T11:23:45Z"
+        },
+        "amount": "50"
+      },
+      {
+        "id": 3,
+        "expense": {
+          "id": 8,
+          "label": "AirBnB NYC",
+          "date": "2017-03-01T19:46:08Z"
+        },
+        "amount": "0"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "eventId": 1,
+    "username": "Mel",
+    "contributions": [
+      {
+        "id": 1,
+        "expense": {
+          "id": 3,
+          "label": "Car rent",
+          "date": "2017-01-01T09:23:54Z"
+        },
+        "amount": "100"
+      },
+      {
+        "id": 2,
+        "expense": {
+          "id": 6,
+          "label": "Food",
+          "date": "2017-05-01T11:23:45Z"
+        },
+        "amount": "50"
+      },
+      {
+        "id": 3,
+        "expense": {
+          "id": 9,
+          "label": "AirBnB NYC",
+          "date": "2017-03-01T19:46:08Z"
+        },
+        "amount": "0"
+      }
+    ]
+  }
+]

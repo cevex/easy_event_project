@@ -4,10 +4,13 @@ import com.cevex.easyevent.springmvc.app.dao.ExpenseDao;
 import com.cevex.easyevent.springmvc.app.dao.entity.ExpenseEntity;
 import com.cevex.easyevent.springmvc.app.mapper.ExpenseMapper;
 import com.cevex.easyevent.springmvc.app.model.Expense;
+import com.cevex.easyevent.springmvc.app.model.ExpenseFull;
 import com.cevex.easyevent.springmvc.share.framework.error.exception.AlreadyExistsException;
+import com.cevex.easyevent.springmvc.share.framework.error.exception.EmptyException;
 import com.cevex.easyevent.springmvc.share.framework.error.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -45,41 +48,11 @@ public class ExpenseService {
      * @return The expenses List if found, null otherwise
      */
     public List<Expense> getExpenseList(Long eventId) {
-        List<ExpenseEntity> entityList = this.findEntityList(eventId, null);
-        return expenseMapper.mapToModelList(entityList);
-    }
-
-    /**
-     * Retrieve an element by identifier
-     *
-     * @return All the Element
-     */
-    public List<Expense> getExpenseListOfParticipant(Long eventId, String username) {
-        List<ExpenseEntity> entityList = this.findEntityList(eventId, username);
-        return expenseMapper.mapToModelList(entityList);
-    }
-
-    /**
-     * Retrieve a expense by name.
-     *
-     * @param eventId  - Search in this event.
-     * @param username - Find expenses for this participant. (OPTIONAL)
-     * @return The entity if found
-     * @throws NotFoundException - If not found
-     */
-    private List<ExpenseEntity> findEntityList(Long eventId, String username) {
-        List<ExpenseEntity> entityList = username == null ?
-                expenseDao.findExpenseList(eventId) :
-                expenseDao.findExpenseListOfParticipant(eventId, username);
-        validateEntityList(entityList);
-        return entityList;
-    }
-
-
-    private void validateEntityList(List<ExpenseEntity> entityList) {
+        List<ExpenseEntity> entityList = expenseDao.findList(eventId);
         if (entityList == null || entityList.size() <= 0) {
-            throw new NotFoundException("Expense List not found");
+            throw new EmptyException("No expenses for [eventId= " + eventId + "]");
         }
+        return expenseMapper.mapToModelList(entityList);
     }
 
     //=========================================================================
@@ -89,29 +62,26 @@ public class ExpenseService {
     /**
      * Retrieve a Expense by username and event.
      *
-     * @param eventId   - Search in this event.
      * @param expenseId - Unique identifier for expense
      * @return The expense if found
      */
-    public Expense getExpense(Long eventId, Long expenseId) {
-        ExpenseEntity entity = findEntity(eventId, expenseId);
+    public Expense getExpense(Long expenseId) {
+        ExpenseEntity entity = expenseDao.find(expenseId);
+        if (entity == null) {
+            throw new NotFoundException("No expense with id=" + expenseId);
+        }
         return expenseMapper.mapToModel(entity);
     }
 
     /**
-     * Find a expense entity by name
+     * Retrieve an Expense by username and event.
      *
-     * @param eventId   - Search in this event.
      * @param expenseId - Unique identifier for expense
-     * @return The entity if found
-     * @throws NotFoundException - If not found
+     * @return The expense if found
      */
-    private ExpenseEntity findEntity(Long eventId, Long expenseId) {
-        ExpenseEntity entity = expenseDao.findExpense(eventId, expenseId);
-        if (entity == null) {
-            throw new NotFoundException("No expense with id=" + expenseId + " under the event id=" + eventId);
-        }
-        return entity;
+    public Expense getFullExpense(Long expenseId) {
+        //TODO : Implement service getFullExpense
+        throw new NotImplementedException();
     }
 
     //=========================================================================
@@ -119,14 +89,16 @@ public class ExpenseService {
     //=========================================================================
 
     /**
-     * Create a new expense
+     * Create a new expense.
      *
      * @param eventId - Identifiers of the element to check
      * @param expense - The expense to create
      * @throws AlreadyExistsException - If username already taken
      */
     public void createExpense(Long eventId, Expense expense) {
-        expenseDao.save(expenseMapper.mapToEntity(expense));
+        ExpenseEntity entity = expenseMapper.mapToEntity(expense);
+        entity.setEventId(eventId);
+        expenseDao.save(entity);
     }
 
     //=========================================================================
@@ -136,16 +108,28 @@ public class ExpenseService {
     /**
      * Update an existing element
      *
-     * @param eventId   - Identifiers of the element to check
      * @param expenseId - Unique identifier for expense
      * @param expense   - The expense to save
      * @return The updated expense.
      * @throws NotFoundException - If not found
      */
-    public Expense updateExpense(Long eventId, Long expenseId, Expense expense) {
-        ExpenseEntity entity = this.findEntity(eventId, expenseId);
+    public Expense updateExpense(Long expenseId, Expense expense) {
+        ExpenseEntity entity = expenseDao.find(expenseId);
         expenseMapper.updateEntity(entity, expense);
         return expense;
+    }
+
+    /**
+     * Update an existing element
+     *
+     * @param expenseId - Unique identifier for expense
+     * @param expense   - The expense to save
+     * @return The updated expense.
+     * @throws NotFoundException - If not found
+     */
+    public ExpenseFull updateFullExpense(Long expenseId, Expense expense) {
+        //TODO : Implement service updateFullExpense
+        throw new NotImplementedException();
     }
 
     //=========================================================================
@@ -155,12 +139,11 @@ public class ExpenseService {
     /**
      * Delete an existing element
      *
-     * @param eventId   - Identifiers of the event to search in
      * @param expenseId - Unique identifier for expense
      * @throws NotFoundException - If not found
      */
-    public void deleteExpense(Long eventId, Long expenseId) {
-        ExpenseEntity entity = this.findEntity(eventId, expenseId);
+    public void deleteExpense(Long expenseId) {
+        ExpenseEntity entity = expenseDao.find(expenseId);
         expenseDao.delete(entity);
     }
 

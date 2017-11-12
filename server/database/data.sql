@@ -9,7 +9,7 @@ INSERT INTO t_user (user_name, user_password, user_phone, user_email)
             ('Will', '123','0645896269', 'boby@test.com');
 
 /*######################################################################################*/
-/*                     Event                                                            */
+/*                     EventDto                                                            */
 /*######################################################################################*/
 
 INSERT INTO t_event (event_title, event_place, event_start_date, event_end_date)

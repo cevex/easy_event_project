@@ -11,6 +11,7 @@ public class EasyEventInitializer extends AbstractAnnotationConfigDispatcherServ
     protected Class<?>[] getRootConfigClasses() {
         return new Class[]{
                 EasyEventConfiguration.class,
+                JacksonConfiguration.class,
                 HibernateConfiguration.class,
         };
     }
@@ -27,7 +28,7 @@ public class EasyEventInitializer extends AbstractAnnotationConfigDispatcherServ
 
     @Override
     protected Filter[] getServletFilters() {
-        Filter [] singleton = { new CORSFilter()};
+        Filter[] singleton = {new CORSFilter()};
         return singleton;
     }
 }

@@ -2,7 +2,9 @@ package com.cevex.easyevent.springmvc.app.dao;
 
 import com.cevex.easyevent.springmvc.app.dao.entity.ExpenseEntity;
 import com.cevex.easyevent.springmvc.share.framework.AbstractDao;
+import org.hibernate.Criteria;
 import org.hibernate.SQLQuery;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -22,10 +24,10 @@ public class ExpenseDao extends AbstractDao<Long, ExpenseEntity> {
      * @return The expenses if found, null otherwise
      */
     @SuppressWarnings("unchecked")
-    public List<ExpenseEntity> findExpenseList(long eventId) {
+    public List<ExpenseEntity> findList(Long eventId) {
         String QUERY = "SELECT * " +
                 "FROM t_expense " +
-                "WHERE expense_event_id=:eventId";
+                "WHERE expense_event_id = :eventId";
 
         SQLQuery query = this.buildQuery(QUERY);
         query.setParameter("eventId", eventId);
@@ -41,7 +43,7 @@ public class ExpenseDao extends AbstractDao<Long, ExpenseEntity> {
      * @return The expense if found, null otherwise
      */
     @SuppressWarnings("unchecked")
-    public List<ExpenseEntity> findExpenseListOfParticipant(Long eventId, String participantName) {
+    public List<ExpenseEntity> findFullList(Long eventId, String participantName) {
         String QUERY = "SELECT t_expense.*, t_contribution.* " +
                 "FROM t_expense " +
                 "  LEFT JOIN t_contribution ON (t_expense.expense_id = t_contribution.contribution_expense_id) " +
@@ -66,7 +68,7 @@ public class ExpenseDao extends AbstractDao<Long, ExpenseEntity> {
      * @param expenseId - Unique identifier for expense
      * @return The expense if found, null otherwise
      */
-    public ExpenseEntity findExpense(Long expenseId) {
+    public ExpenseEntity findFull(Long expenseId) {
         String QUERY = "SELECT * " +
                 "FROM t_expense " +
                 "  LEFT JOIN t_contribution ON (t_expense.expense_id = t_contribution.contribution_expense_id) " +
@@ -78,44 +80,4 @@ public class ExpenseDao extends AbstractDao<Long, ExpenseEntity> {
         return (ExpenseEntity) query.uniqueResult();
     }
 
-    /**
-     * Find a Expense by username and event.
-     *
-     * @param eventId   - Search in this event.
-     * @param expenseId - Unique identifier for expense
-     * @return The expense if found, null otherwise
-     */
-    public ExpenseEntity findExpenseWithContibution(long eventId, Long expenseId) {
-        String QUERY = "SELECT * " +
-                "FROM t_expense " +
-                "  LEFT JOIN t_contribution ON (t_expense.expense_id = t_contribution.contribution_expense_id) " +
-                "WHERE expense_id=:expenseId" +
-                "  AND expense_event_id=:eventId ";
-
-        SQLQuery query = this.buildQuery(QUERY);
-        query.setParameter("eventId", eventId);
-        query.setParameter("expenseId", expenseId);
-
-        return (ExpenseEntity) query.uniqueResult();
-    }
-
-    /**
-     * Find a Expense by username and event.
-     *
-     * @param eventId   - Search in this event.
-     * @param expenseId - Unique identifier for expense
-     * @return The expense if found, null otherwise
-     */
-    public ExpenseEntity findExpense(long eventId, Long expenseId) {
-        String QUERY = "SELECT * " +
-                "FROM t_expense " +
-                "WHERE expense_id=:expenseId" +
-                "  AND expense_event_id=:eventId ";
-
-        SQLQuery query = this.buildQuery(QUERY);
-        query.setParameter("eventId", eventId);
-        query.setParameter("expenseId", expenseId);
-
-        return (ExpenseEntity) query.uniqueResult();
-    }
 }

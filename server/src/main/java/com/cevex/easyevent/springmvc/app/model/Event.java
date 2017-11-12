@@ -38,7 +38,7 @@ public class Event extends ModelElement {
 
     private Byte[] image;
 
-    private Participant participant;
+    private ParticipantFull participant;
 
     private List<Expense> expenses;
 
@@ -49,7 +49,7 @@ public class Event extends ModelElement {
     public Event() {
     }
 
-    public Event(Long id, String title, String place, DateTime start, DateTime end, Byte[] image, Participant participant, List<Expense> expenses) {
+    public Event(Long id, String title, String place, DateTime start, DateTime end, Byte[] image, ParticipantFull participant, List<Expense> expenses) {
         super(id);
         this.title = title;
         this.place = place;
@@ -104,11 +104,11 @@ public class Event extends ModelElement {
         this.image = image;
     }
 
-    public Participant getParticipant() {
+    public ParticipantFull getParticipant() {
         return participant;
     }
 
-    public void setParticipant(Participant participant) {
+    public void setParticipant(ParticipantFull participant) {
         this.participant = participant;
     }
 

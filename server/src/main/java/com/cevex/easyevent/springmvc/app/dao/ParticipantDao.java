@@ -21,7 +21,7 @@ public class ParticipantDao extends AbstractDao<Long, ParticipantEntity> {
      * @return The participants if found, null otherwise
      */
     @SuppressWarnings("unchecked")
-    public List<ParticipantEntity> findParticipantList(long eventId) {
+    public List<ParticipantEntity> findList(long eventId) {
         String QUERY = "SELECT * " +
                 "FROM t_participant " +
                 "WHERE participant_event_id = :eventId";
@@ -60,12 +60,12 @@ public class ParticipantDao extends AbstractDao<Long, ParticipantEntity> {
     //=========================================================================
 
     /**
-     * Find a Participant by unique identifier.
+     * Find a ParticipantFull by unique identifier.
      *
      * @param participantId - Unique identifier for participant
      * @return The participant if found, null otherwise
      */
-    public ParticipantEntity findParticipant(Long participantId) {
+    public ParticipantEntity findFullParticipant(Long participantId) {
         String QUERY = "SELECT * " +
                 "FROM t_participant " +
                 "  LEFT JOIN t_contribution ON (t_participant.participant_id = t_contribution.contribution_participant_id) " +
@@ -78,7 +78,7 @@ public class ParticipantDao extends AbstractDao<Long, ParticipantEntity> {
     }
 
     /**
-     * Find a Participant by username and event.
+     * Find a ParticipantFull by username and event.
      *
      * @param eventId  - Search in this event.
      * @param username - Name of the participant to find
@@ -86,8 +86,7 @@ public class ParticipantDao extends AbstractDao<Long, ParticipantEntity> {
      */
     public ParticipantEntity findParticipant(long eventId, String username) {
         String QUERY = "SELECT * " +
-                "FROM t_participant " +
-                "  LEFT JOIN t_contribution ON (t_participant.participant_id = t_contribution.contribution_participant_id) " +
+                "FROM t_participant "+
                 "WHERE participant_event_id=:eventId " +
                 "  AND participant_user_name=:participantName";
 

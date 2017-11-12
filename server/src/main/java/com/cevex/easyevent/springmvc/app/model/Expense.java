@@ -19,17 +19,12 @@ public class Expense extends ModelElement {
     //          Attributes
     //=========================================================================
 
-    @NotNull
-    private Long eventId;
-
     @Size(min = 3, max = 50)
     private String label;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'hh:mm:ss")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'")
     private DateTime date;
-
-    private List<Contribution> contributionList;
 
     //=========================================================================
     //          Constructor
@@ -38,25 +33,15 @@ public class Expense extends ModelElement {
     public Expense() {
     }
 
-    public Expense(Long id, Long eventId, String label, DateTime date, List<Contribution> contributionList) {
+    public Expense(Long id, String label, DateTime date) {
         super(id);
-        this.eventId = eventId;
         this.label = label;
         this.date = date;
-        this.contributionList = contributionList;
     }
 
     //=========================================================================
     //          Getter/Setter
     //=========================================================================
-
-    public Long getEventId() {
-        return eventId;
-    }
-
-    public void setEventId(Long eventId) {
-        this.eventId = eventId;
-    }
 
     public String getLabel() {
         return label;
@@ -74,11 +59,4 @@ public class Expense extends ModelElement {
         this.date = date;
     }
 
-    public List<Contribution> getContributionList() {
-        return contributionList;
-    }
-
-    public void setContributionList(List<Contribution> contributionList) {
-        this.contributionList = contributionList;
-    }
 }

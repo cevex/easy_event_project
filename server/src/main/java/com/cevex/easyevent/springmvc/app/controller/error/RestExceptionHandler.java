@@ -1,8 +1,8 @@
 package com.cevex.easyevent.springmvc.app.controller.error;
 
 import com.cevex.easyevent.springmvc.share.framework.error.exception.AlreadyExistsException;
+import com.cevex.easyevent.springmvc.share.framework.error.exception.EmptyException;
 import com.cevex.easyevent.springmvc.share.framework.error.exception.NotFoundException;
-import com.cevex.easyevent.springmvc.share.framework.error.exception.WrongAccessException;
 import com.cevex.easyevent.springmvc.share.framework.error.exception.WrongParameterException;
 import com.cevex.easyevent.springmvc.share.framework.error.model.ErrorCause;
 import com.cevex.easyevent.springmvc.share.framework.error.model.ErrorMessage;
@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.List;
 
@@ -32,19 +33,20 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
      * @param ex      - original exception
      * @return The response entity well format
      */
-    private ResponseEntity<ErrorMessage> formatToRestError(HttpStatus status, String message, RuntimeException ex) {
-        ErrorMessage errorMessage = new ErrorMessage(new ErrorCause(message, ex.getMessage()));
-        return new ResponseEntity<>(errorMessage, HttpStatus.INTERNAL_SERVER_ERROR);
+    private ResponseEntity<ErrorCause> formatToRestError(HttpStatus status, String message, RuntimeException ex) {
+        ErrorCause errorMessage = new ErrorCause(message, ex.getMessage());
+        return new ResponseEntity<>(errorMessage, status);
     }
 
     //=========================================================================
-    //                  HTTP 500
+    //                  HTTP 204
     //=========================================================================
 
-//    @ExceptionHandler(value = {RuntimeException.class})
-//    protected ResponseEntity<ErrorMessage> handleInternalServerError(RuntimeException ex, WebRequest request) {
-//        return formatToRestError(HttpStatus.INTERNAL_SERVER_ERROR, "Server error", ex);
-//    }
+    @ExceptionHandler(value = {EmptyException.class})
+    protected ResponseEntity<Void> handleEmpty(RuntimeException ex, WebRequest request) {
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
 
     //=========================================================================
     //                  HTTP 400
@@ -57,17 +59,12 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
                 HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(value = {WrongAccessException.class})
-    protected ResponseEntity<ErrorMessage> handleWrongAccess(RuntimeException ex, WebRequest request) {
-        return formatToRestError(HttpStatus.BAD_REQUEST, "Wrong Parameter", ex);
-    }
-
     //=========================================================================
     //                  HTTP 404
     //=========================================================================
 
     @ExceptionHandler(value = {NotFoundException.class})
-    protected ResponseEntity<ErrorMessage> handleNotFound(RuntimeException ex, WebRequest request) {
+    protected ResponseEntity<ErrorCause> handleNotFound(RuntimeException ex, WebRequest request) {
         return formatToRestError(HttpStatus.NOT_FOUND, "Not found", ex);
     }
 
@@ -76,7 +73,25 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     //=========================================================================
 
     @ExceptionHandler(value = {AlreadyExistsException.class})
-    protected ResponseEntity<ErrorMessage> handleConflict(RuntimeException ex, WebRequest request) {
+    protected ResponseEntity<ErrorCause> handleConflict(RuntimeException ex, WebRequest request) {
         return formatToRestError(HttpStatus.CONFLICT, "Already exist", ex);
+    }
+
+    //=========================================================================
+    //                  HTTP 500
+    //=========================================================================
+
+    @ExceptionHandler(value = {RuntimeException.class})
+    protected ResponseEntity<ErrorCause> handleInternalServerError(RuntimeException ex, WebRequest request) {
+        return formatToRestError(HttpStatus.INTERNAL_SERVER_ERROR, "Server error", ex);
+    }
+
+    //=========================================================================
+    //                  HTTP 501
+    //=========================================================================
+
+    @ExceptionHandler(value = {NotImplementedException.class})
+    protected ResponseEntity<ErrorCause> handleNotImplemented(RuntimeException ex, WebRequest request) {
+        return formatToRestError(HttpStatus.NOT_IMPLEMENTED, "Should be available soon...", ex);
     }
 }

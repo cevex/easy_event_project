@@ -1,0 +1,38 @@
+@startuml
+
+title EasyEvent Domain Model
+
+class Event {
+  + String title
+  + String place
+  + DateTime start
+  + DateTime end
+  + Byte[] image
+  + Participant participant
+  + List<Expense> expenses
+}
+
+class Participant {
+  + String username
+  + List<Contribution> contributionList
+}
+
+class Expense {
+  + String label
+  + DateTime date
+  + List<Contribution> contributionList
+}
+
+class Contribution {
+    Long expenseId
+    Long participantId
+    String amount
+}
+
+Event --> "*" Participant
+Event --> "*" Expense
+
+Participant --> "*" Contribution
+Expense --> "*" Contribution
+
+@enduml

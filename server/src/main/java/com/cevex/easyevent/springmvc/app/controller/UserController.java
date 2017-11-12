@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController extends RestControllerValidator {
 
     //=============================================================================================
-    //                          Retrieve Single Event
+    //                          Retrieve Single EventDto
     //=============================================================================================
 
     @RequestMapping(

@@ -1,0 +1,66 @@
+@startuml
+
+title EasyEvent API Model
+
+class ModelElement {
+  + Long id
+}
+
+class Event {
+  + String title
+  + String place
+  + DateTime start
+  + DateTime end
+  + Byte[] image
+}
+
+class Participant {
+  + String username
+}
+
+class ParticipantFull {
+  + List<ContributionOfParticipant> contributionList
+}
+
+class Expense {
+  + String label
+  + DateTime date
+}
+
+class ExpenseFull {
+  + List<ContributionOfExpenses> contributionList
+}
+
+class Contribution{
+  + String amount
+}
+
+class ContributionOfParticipant {
+  + Expense expense
+}
+
+class ContributionOfExpenses {
+  + Participant participant
+}
+
+
+
+ModelElement <|-- Event
+ModelElement <|-- Expense
+ModelElement <|-- Participant
+ModelElement <|-- Contribution
+
+Participant <|-- ParticipantFull
+Expense <|-- ExpenseFull
+
+Contribution <|-- ContributionOfParticipant
+Contribution <|-- ContributionOfExpenses
+
+ParticipantFull --> "*" ContributionOfParticipant
+ExpenseFull --> "*" ContributionOfExpenses
+
+ContributionOfParticipant --> "*" Participant
+ContributionOfExpenses --> "*" Expense
+
+
+@enduml
